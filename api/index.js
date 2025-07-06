@@ -32,6 +32,8 @@ import contactRoutes from './routes/contact.route.js';
 
 import blogRoutes from './routes/blog.route.js';
 
+import pollRoutes from './routes/poll.route.js';
+
 import compression from 'compression';
 
 dotenv.config();
@@ -90,8 +92,12 @@ app.use('/api/customizer', customizerRoutes);
 
 app.use('/api/action', actionRoutes);
 
+app.use('/api/poll', pollRoutes);
+
 app.use('/api/contact', contactRoutes);
 app.use('/api/blog/', blogRoutes);
+
+app.set('trust proxy', true);
 
 app.use(express.static(path.join(__dirname, '/frontend/dist')));
 

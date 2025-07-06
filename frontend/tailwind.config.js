@@ -16,6 +16,9 @@ export default {
         wiggle: 'wiggle 2s ease-in-out infinite',
         spotlight: 'spotlight 2s ease .75s 1 forwards',
         marquee: 'marquee 25s linear infinite',
+        'slide-up': 'slide-up 1s cubic-bezier(0.65, 0, 0.35, 1) forwards',
+        'slide-down': 'slide-down 1s cubic-bezier(0.65, 0, 0.35, 1) forwards',
+        'fade-in': 'fade-in 0.5s ease-out 0.3s forwards',
       },
       keyframes: {
         marquee: {
@@ -42,6 +45,18 @@ export default {
             opacity: 1,
             transform: 'translate(-50%,-40%) scale(1)',
           },
+        },
+        'slide-up': {
+          '0%': { transform: 'translateY(0)' },
+          '100%': { transform: 'translateY(-100%)' },
+        },
+        'slide-down': {
+          '0%': { transform: 'translateY(0)' },
+          '100%': { transform: 'translateY(100%)' },
+        },
+        'fade-in': {
+          '0%': { opacity: '0' },
+          '100%': { opacity: '1' },
         },
       },
 

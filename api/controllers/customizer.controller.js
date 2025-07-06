@@ -29,10 +29,10 @@ export const updateCustomizer = async (req, res, next) => {
   }
 };
 
-export const getCustomizer = async (req, res, next) => {
+export const getSingleCustomizer = async (req, res, next) => {
+  const { slug } = req.params;
   try {
-    const customizers = await Customizer.find(); // rename local var
-
+    const customizers = await Customizer.findOne({ slug }); // rename local var
     res.status(200).json({ customizers });
   } catch (error) {
     next(error);

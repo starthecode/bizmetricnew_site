@@ -18,11 +18,17 @@ export default function PostCustomizer() {
   const [formData, setFormData] = React.useState({
     pollData: {
       title: '',
-      items: [defaultThreeBoxesData],
+      items: [
+        {
+          pollinput1: '',
+        },
+      ],
     },
     verticlesData: {
       title: '',
-      items: [defaultIndustryData],
+      subtitle: '',
+      extratext: '',
+      items: [defaultThreeBoxesData],
     },
   });
 
@@ -36,7 +42,7 @@ export default function PostCustomizer() {
       if (!slug) return;
 
       try {
-        const res = await fetch(`/api/customize/get/${slug}`, {
+        const res = await fetch(`/api/customizer/getSingle/${slug}`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
@@ -47,47 +53,48 @@ export default function PostCustomizer() {
 
         if (!res.ok) {
           toast.error(data.message || 'Failed to fetch page data');
+          console.log('e1', data.message);
+
           return;
         }
 
-        const contentArray = data.content || [];
+        const customizerData = data?.customizers?.content[0] || [];
 
-        const casestudiesBox1Content = contentArray.find(
-          (item) => item.type === 'verticles'
-        );
+        console.log('customizerData', customizerData);
 
-        const casestudiesBox2Content = contentArray.find(
-          (item) => item.type === 'poll'
-        );
-
-        if (casestudiesBox1Content?.data) {
+        if (customizerData) {
           setFormData((prev) => ({
             ...prev,
             pollData: {
-              title: casestudiesBox1Content?.data?.title || '',
-              items: casestudiesBox1Content?.data?.items || [],
+              title: customizerData?.data?.title || '',
+              items: customizerData?.data?.items || [],
             },
 
-            inputBoxesData2: {
-              title: casestudiesBox2Content?.data?.title || '',
-              items: casestudiesBox2Content?.data?.items || '',
+            verticlesData: {
+              title: customizerData?.data?.title || '',
+              subtitle: customizerData?.data?.subtitle || '',
+              extratext: customizerData?.data?.extratext || '',
+              items: customizerData?.data?.items || [],
             },
           }));
         }
       } catch (error) {
         toast.error(error.message || 'Something went wrong');
+        console.log('e2', error.message);
       }
     };
 
     fetchPage();
   }, [slug]);
 
+  console.log('formData', formData.pollData);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     const pollData = sectionsRef.current.poll?.getData?.();
 
-    const verticlesData = sectionsRef.current.verticles?.getData?.();
+    const verticlesData = sectionsRef.current.verticles?.getThreeBoxesData?.();
 
     //select content as per template
     const getTemplateContent = () => {
@@ -96,7 +103,12 @@ export default function PostCustomizer() {
           return [
             {
               type: 'verticles',
-              data: verticlesData,
+              data: {
+                title: verticlesData?.title || '',
+                subtitle: verticlesData?.subtitle || '',
+                extratext: verticlesData?.extratext || '',
+                items: verticlesData?.items || [],
+              },
             },
           ];
 
@@ -104,7 +116,10 @@ export default function PostCustomizer() {
           return [
             {
               type: 'poll',
-              data: pollData,
+              data: {
+                title: pollData?.title || '',
+                items: pollData?.items || [],
+              },
             },
           ];
 
@@ -118,6 +133,8 @@ export default function PostCustomizer() {
       content: getTemplateContent(),
       slug,
     };
+
+    console.log('payload', payload);
 
     try {
       const response = await fetch(`/api/customizer/update/${slug}`, {
@@ -155,7 +172,7 @@ export default function PostCustomizer() {
             />
           ) : slug === 'verticles' ? (
             <ThreeBoxes
-              ref={(el) => (sectionsRef.current.poll = el)}
+              ref={(el) => (sectionsRef.current.verticles = el)}
               threeBoxesData={formData?.verticlesData}
             />
           ) : (

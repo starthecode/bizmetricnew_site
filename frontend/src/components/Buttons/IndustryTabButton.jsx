@@ -41,9 +41,9 @@ const IndustryTabButton = ({
       initial={{ opacity: 0, y: -50 }}
       animate={controls}
       key={index}
-      onClick={() => setActiveTab(tab.industryName)}
-      className={`px-5 py-8 w-[200px] sm:w-[100px] md:w-[100px] lg:w-[200px] rounded-lg shadow-sm text-center border ${
-        activeTab === tab.industryName
+      onClick={() => setActiveTab(tab.threeboxesinput2)}
+      className={`px-5 py-8 capitalize w-[200px] sm:w-[100px] md:w-[100px] lg:w-[200px] rounded-lg shadow-sm text-center border ${
+        activeTab === tab.threeboxesinput2
           ? 'bg-junglegreen-500 border-junglegreen-200'
           : 'bg-white'
       } transition-all`}
@@ -51,7 +51,7 @@ const IndustryTabButton = ({
       <div className="flex flex-col items-center gap-1">
         <span
           className={`text-md font-medium ${
-            activeTab === tab.industryName
+            activeTab === tab.threeboxesinput2
               ? 'text-white'
               : 'text-junglegreen-500'
           } transition-all`}
@@ -60,10 +60,10 @@ const IndustryTabButton = ({
         </span>
         <span
           className={`text-xs sm:text-xs md:text-sm lg:text-md xl:text-md 2xl:text-md font-medium ${
-            activeTab === tab.industryName ? 'text-white' : 'text-black'
+            activeTab === tab.threeboxesinput2 ? 'text-white' : 'text-black'
           } transition-all`}
         >
-          {tab.industryName}
+          {tab.threeboxesinput2}
         </span>
       </div>
     </motion.button>

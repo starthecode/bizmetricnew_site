@@ -57,10 +57,12 @@ export default function IndustryAccordions() {
 
   const [data, setData] = React.useState({});
 
+  const slug = 'verticles';
+
   React.useEffect(() => {
     const fetchSettings = async () => {
       try {
-        const res = await fetch('/api/customizer/get', {
+        const res = await fetch(`/api/customizer/getSingle/${slug}`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
@@ -74,13 +76,7 @@ export default function IndustryAccordions() {
           return;
         }
 
-        const contentArray = data?.customizers[0].content || [];
-
-        const industryContent = contentArray.find(
-          (item) => item.type === 'industry'
-        );
-
-        setData(industryContent?.data);
+        setData(data?.customizers?.content[0]?.data);
       } catch (error) {
         toast.error('An error occurred while fetching settings');
         console.error('fetchSettings error:', error);
@@ -93,18 +89,14 @@ export default function IndustryAccordions() {
   return (
     <div className="h-full max-w-full px-10 sm:px-0 md:px-10 lg:px-20 xl:px-40 mt-20 pb-20 bg-white">
       <div className="flex w-full mb-10 pt-10">
-        <Heading
-          type="dark"
-          smallTitle={'We serve multiple verticals'}
-          title={data?.title}
-        />
+        <Heading type="dark" smallTitle={data?.title} title={data?.subtitle} />
       </div>
       <GlowLight classes={'-left-20 bg-flamingo-600/40'} />
       <div className="h-full max-w-full relative z-10">
         <div className="flex gap-10 sm:gap-5 md:gap-5 lg:gap-8 overflow-x-auto pb-4">
           {data?.items &&
             data?.items?.map((tab, index) => {
-              const IconComponent = iconMap[tab.industryIcon];
+              const IconComponent = iconMap[tab.threeboxesinput1];
               return (
                 <IndustryTabButton
                   key={index}

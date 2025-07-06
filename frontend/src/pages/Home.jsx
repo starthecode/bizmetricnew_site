@@ -72,7 +72,7 @@ export default function Home() {
         console.error(error.message || 'Something went wrong');
       } finally {
         const elapsed = Date.now() - startTime;
-        const remaining = 3000 - elapsed;
+        const remaining = 1000 - elapsed;
         setTimeout(() => setLoading(false), remaining > 0 ? remaining : 0);
       }
     };
@@ -82,9 +82,15 @@ export default function Home() {
 
   if (loading)
     return (
-      <div className="fixed inset-0 z-50 flex items-center justify-center bg-white">
-        <div className="absolute inset-0 bg-black animate-expand" />
-        <div className="z-10 text-white text-5xl font-semibold animate-fadein">
+      <div className="fixed inset-0 z-50 flex items-center justify-center bg-royalBlue-950/80 overflow-hidden">
+        {/* Top half that slides up */}
+        <div className="absolute top-0 left-0 w-full h-1/2 bg-royalBlue-950/80 origin-top animate-slide-up" />
+
+        {/* Bottom half that slides down */}
+        <div className="absolute bottom-0 left-0 w-full h-1/2 bg-royalBlue-950/80 origin-bottom animate-slide-down" />
+
+        {/* Content in the middle */}
+        <div className="z-10 text-junglegreen-600 text-5xl font-semibold animate-fade-in">
           <NumericLoader />
         </div>
       </div>

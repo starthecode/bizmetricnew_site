@@ -36,7 +36,6 @@ const PollFields = forwardRef(({ pollData }, ref) => {
     reset({
       poll: {
         title: pollData?.title || '',
-
         items: pollData?.items || [],
       },
     });
@@ -74,7 +73,7 @@ const PollFields = forwardRef(({ pollData }, ref) => {
                 <div className="grid grid-cols-4 gap-2 p-4">
                   <input
                     placeholder="Poll Text1"
-                    {...register(`poll.${index}.pollinput1`)}
+                    {...register(`poll.items.${index}.pollinput1`)}
                   />
                 </div>
                 <RemoveButton removeAction={remove} index={index} />

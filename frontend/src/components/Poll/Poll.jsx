@@ -10,10 +10,12 @@ export const Poll = () => {
     setActivePoll((prevActive) => !prevActive);
   };
 
+  const slug = 'poll';
+
   React.useEffect(() => {
     const fetchSettings = async () => {
       try {
-        const res = await fetch('/api/customizer/get', {
+        const res = await fetch(`/api/customizer/getSingle/${slug}`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
@@ -27,11 +29,7 @@ export const Poll = () => {
           return;
         }
 
-        const contentArray = data?.customizers[0].content || [];
-
-        const pollContent = contentArray.find((item) => item.type === 'poll');
-
-        setPollData(pollContent);
+        setPollData(data?.customizers?.content[0]?.data);
       } catch (error) {
         console.error('An error occurred while fetching settings');
         console.error('fetchSettings error:', error);

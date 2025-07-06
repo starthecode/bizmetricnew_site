@@ -1,18 +1,25 @@
-import { submitPollData } from '../../lib/submitPoll';
 import React, { useState, useEffect } from 'react';
 import toast from 'react-hot-toast';
 
 const PollQuestion = ({ pollData }) => {
   const [poll, setPoll] = useState({
-    question:
-      pollData?.data?.title || 'Which current AI Module are you utilizing?',
-    answers: ['GPT 4', 'Bard', 'Claude', 'OpenAI'],
+    question: '',
+    answers: [],
     pollcount: 100,
-    answerweight: [60, 20, 10, 10], // sum = 100
+    answerweight: [60, 20, 10, 10],
     selectanswer: -1,
   });
 
-  // eslint-disable-next-line no-unused-vars
+  useEffect(() => {
+    if (pollData) {
+      setPoll((prev) => ({
+        ...prev,
+        question: pollData.title || '',
+        answers: pollData.items?.map((item) => item.pollinput1) || [],
+      }));
+    }
+  }, [pollData]);
+
   const markAnswer = async (i, answer) => {
     setPoll((prevPoll) => ({
       ...prevPoll,
@@ -21,8 +28,16 @@ const PollQuestion = ({ pollData }) => {
 
     toast.loading('Sending...');
 
+    console.log('answer', answer);
+
     try {
-      const response = await submitPollData(answer);
+      const response = await fetch('/api/poll/submit-poll', {
+        method: 'POST',
+        body: JSON.stringify({ answerName: answer }),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
 
       if (!response.message.answerName) {
         toast.dismiss();
@@ -83,7 +98,7 @@ const PollQuestion = ({ pollData }) => {
               className={`answer relative text-sm flex items-center w-full h-7 px-2 border border-gray-300 cursor-pointer overflow-hidden rounded-md mb-4 ${
                 i === poll.selectanswer ? 'selected border-junglegreen-600' : ''
               }`}
-              onClick={() => null}
+              onClick={() => markAnswer(i, answer)}
             >
               {answer}
               <span
