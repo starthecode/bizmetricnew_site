@@ -33,8 +33,6 @@ export const Inquires = () => {
   }, []);
 
   const handleDeleteInquiry = async (id) => {
-    console.log('id', id);
-
     try {
       const res = await fetch('/api/contact/deleteInquiry', {
         method: 'DELETE',

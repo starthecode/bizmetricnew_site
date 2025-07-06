@@ -5,9 +5,7 @@ const router = express.Router();
 
 router.post('/submit-poll', async (req, res) => {
   try {
-    const { answerName } = req.body;
-
-    console.log('answerName', req.body);
+    const { answerName, pollName } = req.body;
 
     if (!answerName) {
       return res.status(400).json({ error: 'Answer name is required' });
@@ -20,8 +18,17 @@ router.post('/submit-poll', async (req, res) => {
       ipAddress = '127.0.0.1';
     }
 
+    const alreadySubmitted = await Poll.findOne({ ipAddress });
+
+    if (alreadySubmitted) {
+      return res.status(403).json({
+        success: false,
+        message: 'You have already submitted the poll.',
+      });
+    }
+
     // Save to MongoDB
-    const newPoll = new Poll({ answerName, ipAddress });
+    const newPoll = new Poll({ pollName, answerName, ipAddress });
     await newPoll.save();
 
     res
@@ -31,6 +38,18 @@ router.post('/submit-poll', async (req, res) => {
     console.error('Poll submission error:', error);
     res.status(500).json({ error: 'Internal server error' });
   }
+});
+
+router.get('/get-polls', async (req, res) => {
+  try {
+    const data = await Poll.find();
+
+    if (!data) {
+      return res.status(400).json({ error: 'No Poll Data Found!' });
+    }
+
+    return res.status(201).json({ success: true, pollData: data });
+  } catch (error) {}
 });
 
 export default router;

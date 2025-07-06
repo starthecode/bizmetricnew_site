@@ -12,7 +12,7 @@ const settingsData = [
       {
         icon: '📊',
         label: 'Poll',
-        link: '/dashboard/customizer/poll',
+        link: '/dashboard/customizer/poll/show',
       },
     ],
   },

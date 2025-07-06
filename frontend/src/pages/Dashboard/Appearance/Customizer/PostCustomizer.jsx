@@ -60,8 +60,6 @@ export default function PostCustomizer() {
 
         const customizerData = data?.customizers?.content[0] || [];
 
-        console.log('customizerData', customizerData);
-
         if (customizerData) {
           setFormData((prev) => ({
             ...prev,
@@ -86,8 +84,6 @@ export default function PostCustomizer() {
 
     fetchPage();
   }, [slug]);
-
-  console.log('formData', formData.pollData);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -133,8 +129,6 @@ export default function PostCustomizer() {
       content: getTemplateContent(),
       slug,
     };
-
-    console.log('payload', payload);
 
     try {
       const response = await fetch(`/api/customizer/update/${slug}`, {

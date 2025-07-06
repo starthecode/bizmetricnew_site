@@ -20,7 +20,7 @@ const PollQuestion = ({ pollData }) => {
     }
   }, [pollData]);
 
-  const markAnswer = async (i, answer) => {
+  const markAnswer = async (i, answer, pollName) => {
     setPoll((prevPoll) => ({
       ...prevPoll,
       selectanswer: i,
@@ -28,26 +28,41 @@ const PollQuestion = ({ pollData }) => {
 
     toast.loading('Sending...');
 
-    console.log('answer', answer);
-
     try {
       const response = await fetch('/api/poll/submit-poll', {
         method: 'POST',
-        body: JSON.stringify({ answerName: answer }),
+        body: JSON.stringify({
+          pollName: pollName,
+          answerName: answer,
+        }),
         headers: {
           'Content-Type': 'application/json',
         },
       });
 
-      if (!response.message.answerName) {
+      const result = await response.json();
+
+      if (!result.success) {
         toast.dismiss();
-        throw new Error('Failed to submit poll answer');
+        throw new Error(result.message);
       }
+
       toast.dismiss();
-      toast.success('Thank You For Your Answer');
+      toast.success(result.message);
     } catch (error) {
       toast.dismiss();
-      console.error('Error submitting poll answer:', error);
+      toast.success(error.message, {
+        icon: 'ℹ️', // Unicode info icon
+        style: {
+          border: '1px solid #ff9800',
+          padding: '16px',
+          color: '#ff9800',
+        },
+        iconTheme: {
+          primary: '#ff9800',
+          secondary: '#FFFAEE',
+        },
+      });
     }
   };
 
@@ -98,7 +113,7 @@ const PollQuestion = ({ pollData }) => {
               className={`answer relative text-sm flex items-center w-full h-7 px-2 border border-gray-300 cursor-pointer overflow-hidden rounded-md mb-4 ${
                 i === poll.selectanswer ? 'selected border-junglegreen-600' : ''
               }`}
-              onClick={() => markAnswer(i, answer)}
+              onClick={() => markAnswer(i, answer, poll.question)}
             >
               {answer}
               <span

@@ -37,6 +37,7 @@ import { PostCaseStudy } from './pages/Dashboard/Custom/PostCaseStudy';
 import SingleCaseStudy from './components/page/CaseStudy/SingleCaseStudy';
 import { CaseStudies } from './pages/Dashboard/CaseStudies';
 import PostCustomizer from './pages/Dashboard/Appearance/Customizer/PostCustomizer';
+import ShowPolls from './pages/Dashboard/Appearance/Customizer/Poll/ShowPolls';
 
 export default function App() {
   return (
@@ -104,6 +105,11 @@ export default function App() {
                   <Route
                     path="/dashboard/customizer/:slug"
                     element={<PostCustomizer />}
+                  />
+
+                  <Route
+                    path="/dashboard/customizer/poll/show"
+                    element={<ShowPolls />}
                   />
 
                   {/* Add more dashboard routes here */}
