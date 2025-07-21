@@ -3,6 +3,7 @@ import { BiSolidRightArrow } from 'react-icons/bi';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router';
 import { useState } from 'react';
+import OurOfferingsBlock from './OurOfferingsBlock';
 
 const SubItem = ({ menuAcfFields, childrenItem }) => {
   const SubItemVariants = {
@@ -66,7 +67,7 @@ const SubItem = ({ menuAcfFields, childrenItem }) => {
                   </Link>
                   {item.children.length > 0 && (
                     <ul
-                      style={{ top: item?.menuAcfFields.menuClasses | 0 }}
+                      // style={{ top: item?.menuAcfFields.menuClasses | '' }}
                       className={`${
                         isOpen === item.title ? 'visible' : 'hidden'
                       } -right-[510px] top-0 grid grid-cols-2 z-10 w-fit gap-x-4 transition-all will-change-transform lg:absolute lg:py-4 lg:px-2 relative`}
@@ -106,16 +107,17 @@ const SubItem = ({ menuAcfFields, childrenItem }) => {
             </ul>
           </nav>
         </motion.div>
-      ) : menuAcfFields?.showMegaMenu ? (
+      ) : menuAcfFields?.showMegaMenu &&
+        menuAcfFields?.menuClasses !== 'solutions' ? (
         <motion.div
           className="my-2 cursor-pointer min-w-max h-fit overflow-auto"
           layout
           variants={SubItemVariants}
         >
-          <div className="grid grid-cols-2 px-5 py-5 h-[350px]">
+          <div className="grid grid-cols-2 px-5 py-5">
             {childrenItem?.map((item, index) => (
               <Link key={index} className="flex m-3" to={item.path}>
-                <span className="group relative flex gap-3 rounded-md items-start w-[280px] h-fit hover:bg-flamingo-200/40 dark:hover:bg-junglegreen-200/20 px-3 py-3 font-bold text-ebonyclay-900 text-md hover:text-flamingo-400">
+                <span className="group relative flex gap-3 rounded-md items-start w-fit h-fit hover:bg-flamingo-200/40 dark:hover:bg-junglegreen-200/20 px-3 py-3 font-bold text-ebonyclay-900 text-md hover:text-flamingo-400">
                   {item.menuAcfFields?.menuIcon?.mediaItemUrl && (
                     <img
                       width={20}
@@ -146,6 +148,9 @@ const SubItem = ({ menuAcfFields, childrenItem }) => {
             ))}
           </div>
         </motion.div>
+      ) : menuAcfFields?.showMegaMenu &&
+        menuAcfFields?.menuClasses === 'solutions' ? (
+        <OurOfferingsBlock />
       ) : (
         <motion.div
           className="my-2 cursor-pointer min-w-max h-fit overflow-auto w-fit"
@@ -166,9 +171,7 @@ const SubItem = ({ menuAcfFields, childrenItem }) => {
                   )}
                   <span className="flex flex-col">
                     <span className="flex">
-                      <p className="text-ebony-900 text-sm">
-                        {item.title}
-                      </p>
+                      <p className="text-ebony-900 text-sm">{item.title}</p>
                       {item.menuAcfFields?.showMenuLabel ? (
                         <label className=" bg-junglegreen-100/80 text-junglegreen-500 flex items-center text-xs font-medium mr-2 px-2.5 py-1 rounded-full h-5 ml-4">
                           <span>{item.menuAcfFields?.menuLabelText}</span>

@@ -1396,6 +1396,7 @@ select option {
 
 .solution__section3 ul li {
   margin-bottom: 10px;
+  line-height: 18px;
 }
 
 .checkmark_li li:before {

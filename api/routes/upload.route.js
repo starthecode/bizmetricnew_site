@@ -94,9 +94,11 @@ router.get('/media', async (req, res) => {
 });
 
 // Delete a blob from "uploads" container
-router.delete('/delete/:filename', async (req, res) => {
+router.delete('/delete', async (req, res) => {
   try {
-    const { filename } = req.params;
+    const filename = req.query.name; // 🔁 use req.query instead of req.params
+    console.log('Deleting file:', filename);
+
     const blobClient = containerClient.getBlockBlobClient(filename);
 
     const exists = await blobClient.exists();

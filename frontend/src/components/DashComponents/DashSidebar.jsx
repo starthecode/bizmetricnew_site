@@ -96,11 +96,6 @@ export const DashSidebar = () => {
       icon: <MdOutlinePermMedia color="#f2692a" />,
     },
 
-    {
-      name: 'Menu',
-      icon: <BsFillMenuButtonFill color="#f2692a" />,
-    },
-
     { name: 'Users', icon: <FiMail color="#f2692a" /> },
   ];
 

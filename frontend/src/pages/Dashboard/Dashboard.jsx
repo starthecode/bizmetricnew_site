@@ -10,6 +10,7 @@ import Settings from './Settings/Settings';
 import Customize from './Appearance/Customize';
 import Media from './Appearance/Media';
 import MediaLibraryManager from './Appearance/Media/MediaLibraryManager ';
+import MenuManager from '../../components/DashComponents/Menu/MenuManager';
 // import MenuBuilder from '../../components/DashComponents/Menu/MenuBuilder';
 
 export default function Dashboard() {
@@ -45,6 +46,7 @@ export default function Dashboard() {
         {tab === 'settings' && <Settings />}
         {tab === 'appearance' && <Customize />}
         {tab === 'media' && <MediaLibraryManager />}
+        {tab === 'menu' && <MenuManager />}
       </div>
     </main>
   );

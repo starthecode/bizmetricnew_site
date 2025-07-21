@@ -15,7 +15,7 @@ import { IoMdArrowRoundBack, IoMdArrowRoundForward } from 'react-icons/io';
 export default function AnimatedSlider({ data }) {
   return (
     <section
-      className="relative py-0 sm:py-0 md:pt-24 lg:pt-24 xl:pt-24 overflow-hidden z-10"
+      className="relative py-0 sm:py-0 md:pt-24 lg:pt-24 xl:pt-28 overflow-hidden z-10"
       style={{
         backgroundImage: `url('https://bizsiteuploads.blob.core.windows.net/uploads/1744992778190-back-image.jpg')`,
         backgroundSize: 'cover',

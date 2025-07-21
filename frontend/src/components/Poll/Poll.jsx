@@ -41,7 +41,7 @@ export const Poll = () => {
 
   return (
     <div
-      className={`fixed right-0 bottom-16 h-auto z-20 overflow-hidden flex flex-col transition-transform duration-300 transform -rotate-90 ${
+      className={`fixed right-0 bottom-24 h-auto z-20 overflow-hidden flex flex-col transition-transform duration-300 transform -rotate-90 ${
         activePoll ? '-translate-x-[15px]' : 'translate-x-[210px]'
       }`}
     >

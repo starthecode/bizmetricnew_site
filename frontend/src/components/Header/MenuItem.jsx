@@ -31,29 +31,30 @@ const MenuItem = ({ item, scroll, children, ...props }) => {
           item?.url === '#' && 'pointer-events-none'
         } relative sm:text-sm md:text-sm 2xl:text-sm font-medium hover:text-flamingo-400`}
       >
-        {item?.menuAcfFields?.menuLabel098 && (
+        {item?.menuAcfFields?.menuLabel && (
           <label className="absolute -top-5 -right-6 bg-junglegreen-100/80 text-junglegreen-800 flex items-center text-[0.6rem] font-medium mr-2 px-2 py-0 rounded-full ml-4">
-            <span>{item?.menuAcfFields?.menuLabel098}</span>
+            <span>{item?.menuAcfFields?.menuLabel}</span>
           </label>
         )}
-
         {item.title}
       </Link>
-      {item?.children.length > 0 && isBeingHovered && (
-        <div className="relative min-w-max top-5">
-          <motion.div
-            {...props}
-            layoutId="menu"
-            className="absolute shadow-lg bg-white rounded-lg -left-2/4"
-            variants={MenuItemVariants}
-            style={{ minWidth: 400 }}
-            initial="hidden"
-            animate="visible"
-          >
-            {children}
-          </motion.div>
-        </div>
-      )}
+      {(item?.children.length > 0 ||
+        item?.menuAcfFields.menuClasses === 'solutions') &&
+        isBeingHovered && (
+          <div className="relative w-full flex justify-center top-5">
+            <motion.div
+              {...props}
+              layoutId="menu"
+              className="absolute shadow-lg bg-white rounded-lg"
+              variants={MenuItemVariants}
+              style={{ minWidth: 400 }}
+              initial="hidden"
+              animate="visible"
+            >
+              {children}
+            </motion.div>
+          </div>
+        )}
     </motion.div>
   );
 };

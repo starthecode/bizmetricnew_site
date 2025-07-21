@@ -12,7 +12,8 @@ import { PrimaryButton } from '../Buttons/PrimaryButton';
 // import PopupContext from '../Extras/Popups/PopupContext';
 
 const Header = ({ menus }) => {
-  const menuList = flatListToHierarchical(menus?.nodes);
+
+  const menuList = flatListToHierarchical(menus);
   const [active, setActive] = useState(false);
 
   // const { openPopup } = useContext(PopupContext);

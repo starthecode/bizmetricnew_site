@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import MediaLibraryModal from '../../../../components/extras/MediaLibraryModal';
+import toast from 'react-hot-toast';
 
 const MediaLibraryManager = ({ isOpen, onSelect, onClose }) => {
   const [mediaState, setMediaState] = useState({
@@ -41,6 +42,8 @@ const MediaLibraryManager = ({ isOpen, onSelect, onClose }) => {
           ...prev,
           list: prev.list.filter((item) => item.name !== blobName),
         }));
+
+        toast.success('file Deleted Successfully');
       } else {
         console.error('Failed to delete blob');
       }

@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
+import toast from 'react-hot-toast';
 
 const MediaLibraryModal = ({
   isOpen,
@@ -35,6 +36,8 @@ const MediaLibraryModal = ({
     const file = e.target.files[0];
     if (!file) return;
 
+    toast.loading('Please Wait...');
+
     const formData = new FormData();
     formData.append('file', file);
 
@@ -43,6 +46,12 @@ const MediaLibraryModal = ({
       body: formData,
     });
 
+    if (!res.ok) {
+      toast.error('File Uploaded Failed');
+    }
+
+    toast.dismiss();
+    toast.success('File Uploaded Successfully');
     const data = await res.json();
 
     setMediaState((prev) => ({

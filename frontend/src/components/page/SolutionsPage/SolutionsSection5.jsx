@@ -59,6 +59,8 @@ const cards = [
   },
 ];
 export default function SolutionsSection5({ data }) {
+  if (!data?.items || data.items.length === 0) return null;
+
   return (
     <BackgroundSection>
       <div className="container">

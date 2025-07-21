@@ -43,7 +43,7 @@ export default function SolutionsSection4({ data }) {
           return (
             <div
               key={index}
-              className="flex flex-col md:flex-row items-center gap-0 h-[395px]"
+              className="solution__page-li flex flex-col md:flex-row items-center gap-0 h-[395px]"
             >
               {isImageLeft ? (
                 <>

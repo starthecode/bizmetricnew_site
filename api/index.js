@@ -34,6 +34,8 @@ import blogRoutes from './routes/blog.route.js';
 
 import pollRoutes from './routes/poll.route.js';
 
+import menuRoutes from './routes/menu.route.js';
+
 import compression from 'compression';
 
 dotenv.config();
@@ -96,6 +98,8 @@ app.use('/api/poll', pollRoutes);
 
 app.use('/api/contact', contactRoutes);
 app.use('/api/blog/', blogRoutes);
+
+app.use('/api/menu', menuRoutes);
 
 app.set('trust proxy', true);
 

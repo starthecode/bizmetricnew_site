@@ -91,7 +91,7 @@ export default function TableComp({ data = [], type }) {
                       item.postType === 'post'
                         ? 'post-new?post'
                         : item.postType === 'solutions'
-                        ? 'new-solution?page'
+                        ? 'solution-new?page'
                         : item.postType === 'newsletters'
                         ? 'new-newsletter?page'
                         : 'page-new?page'

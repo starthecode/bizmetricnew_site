@@ -42,7 +42,7 @@ const IndustryTabButton = ({
       animate={controls}
       key={index}
       onClick={() => setActiveTab(tab.threeboxesinput2)}
-      className={`px-5 py-8 capitalize w-[200px] sm:w-[100px] md:w-[100px] lg:w-[200px] rounded-lg shadow-sm text-center border ${
+      className={`px-5 py-8 capitalize w-[200px] sm:w-[100px] md:w-[100px] lg:w-[200px] hover:bg-junglegreen-600/30 rounded-lg shadow-sm text-center border ${
         activeTab === tab.threeboxesinput2
           ? 'bg-junglegreen-500 border-junglegreen-200'
           : 'bg-white'
@@ -59,8 +59,8 @@ const IndustryTabButton = ({
           {IconComponent && <IconComponent size={24} />}
         </span>
         <span
-          className={`text-xs sm:text-xs md:text-sm lg:text-md xl:text-md 2xl:text-md font-medium ${
-            activeTab === tab.threeboxesinput2 ? 'text-white' : 'text-black'
+          className={`text-xs sm:text-xs md:text-sm lg:text-md xl:text-md 2xl:text-md font-semibold ${
+            activeTab === tab.threeboxesinput2 ? 'text-white' : 'text-junglegreen-900'
           } transition-all`}
         >
           {tab.threeboxesinput2}

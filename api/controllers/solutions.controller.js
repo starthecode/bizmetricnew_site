@@ -1,5 +1,3 @@
-import Post from '../models/post.model.js';
-
 import Seo from '../models/seo.model.js';
 import Solutions from '../models/solutions.model.js';
 
@@ -67,7 +65,7 @@ export const getSolutions = async (req, res, next) => {
       .sort({ updatedAt: sortDirection })
       .skip(startIndex)
       .limit(limit)
-      .select('title createdAt metaFields postType pageId slug'); // ✅ Include all needed fields
+      .select('title createdAt metaFields postType pageId slug excerpts'); // ✅ Include all needed fields
 
     const filteredPosts =
       solutions &&
@@ -80,6 +78,7 @@ export const getSolutions = async (req, res, next) => {
         image: post.metaFields?.featuredImage || '',
         category: post.metaFields?.categories || [],
         date: post.createdAt,
+        excerpts: post.excerpts,
       }));
 
     const totalPostCount = await Solutions.countDocuments();
@@ -111,8 +110,7 @@ export const getSolutionBySlug = async (req, res, next) => {
   console.log('req.params.slug', req.params.slug);
 
   try {
-    const solution = await Solutions.findOne({ slug: req.params.slug })
-    .lean();
+    const solution = await Solutions.findOne({ slug: req.params.slug }).lean();
 
     if (!solution) {
       return res.status(404).json({ message: 'Solution not found' });

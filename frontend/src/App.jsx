@@ -78,7 +78,7 @@ export default function App() {
                   <Route path="/dashboard/inquires" element={<Inquires />} />
 
                   <Route
-                    path="/dashboard/new-solution"
+                    path="/dashboard/solution-new"
                     element={<PostSolutions />}
                   />
                   <Route path="/dashboard/solutions" element={<Solutions />} />
