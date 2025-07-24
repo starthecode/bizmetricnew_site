@@ -112,10 +112,9 @@ export default function BlogSingle() {
 
   return (
     <section className="pb-20">
-      <PagePostHero {...pageHeaderData} />
+      <PagePostHero alignCenter="true" {...pageHeaderData} />
       <div className="container mt-20">
         <BlogContent content={data?.content} metaFields={data?.metaFields} />
-
         <MoreContent moreContent={moreContent} />
       </div>
     </section>

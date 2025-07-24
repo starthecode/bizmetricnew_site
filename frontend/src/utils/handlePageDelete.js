@@ -22,7 +22,7 @@ export const handlePageDelete = async ({ type, postid, navigate, toast }) => {
 
     if (data.success) {
       toast.success(`${type} Deleted`);
-      navigate(`/dashboard/${type}`);
+      navigate(`/dashboard/${type == 'post' ? 'posts' : type}`);
       window.location.reload();
     }
   } catch (error) {

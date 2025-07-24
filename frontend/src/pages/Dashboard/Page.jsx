@@ -98,13 +98,19 @@ export const Page = () => {
       extratext: '',
       items: [defaultThreeBoxesData],
     },
-    OverviewBoxesData: [
-      {
-        servicesImage: '',
-        servicesName: '',
-        servicesDesc: '',
-      },
-    ],
+    threeBoxesData2: {
+      title: '',
+      subtitle: '',
+      extratext: '',
+      items: [defaultThreeBoxesData],
+    },
+
+    threeBoxesData3: {
+      title: '',
+      subtitle: '',
+      extratext: '',
+      items: [defaultThreeBoxesData],
+    },
 
     whyboxFields: [
       {
@@ -399,10 +405,6 @@ export const Page = () => {
           (item) => item.type === 'threeboxes3'
         );
 
-        const overviewBoxesContent = contentArray.find(
-          (item) => item.type === 'overviewboxes'
-        );
-
         const whyboxContent = contentArray.find(
           (item) => item.type === 'whybizmetricbox'
         );
@@ -423,6 +425,18 @@ export const Page = () => {
               subtitle: threeBoxesContent?.data?.subtitle || '',
               extratext: threeBoxesContent?.data?.extratext || '',
               items: threeBoxesContent?.data?.items || [],
+            },
+            threeBoxesData2: {
+              title: threeBoxes2Content?.data?.title || '',
+              subtitle: threeBoxes2Content?.data?.subtitle || '',
+              extratext: threeBoxes2Content?.data?.extratext || '',
+              items: threeBoxes2Content?.data?.items || [],
+            },
+            threeBoxesData3: {
+              title: threeBoxes3Content?.data?.title || '',
+              subtitle: threeBoxes3Content?.data?.subtitle || '',
+              extratext: threeBoxes3Content?.data?.extratext || '',
+              items: threeBoxes3Content?.data?.items || [],
             },
           }));
 
@@ -507,13 +521,6 @@ export const Page = () => {
               extratext: fiveBoxesContent3?.data?.extratext || '',
               items: fiveBoxesContent3?.data?.items || [],
             },
-          }));
-        }
-
-        if (overviewBoxesContent?.data) {
-          setServicesFields((prev) => ({
-            ...prev,
-            overviewBoxesData: overviewBoxesContent.data,
           }));
         }
 
@@ -646,7 +653,6 @@ export const Page = () => {
     FiveBoxes3: null,
     GalleryBoxes: null,
     ThreeBoxes3: null,
-    OverviewBoxes: null,
     approach: null,
     otherservices: null,
     industrybox2: null,
@@ -708,9 +714,6 @@ export const Page = () => {
 
     const currentThreeBoxesData3 =
       sectionsRef.current.ThreeBoxes3?.getThreeBoxesData?.();
-
-    const currentOverviewBoxesData =
-      sectionsRef.current.OverviewBoxes?.getOverviewBoxesData?.();
 
     const currentApproachBoxesData =
       sectionsRef.current.approach?.getApproachBoxesData?.();
@@ -795,8 +798,23 @@ export const Page = () => {
               },
             },
             {
-              type: 'overviewboxes',
-              data: currentOverviewBoxesData,
+              type: 'threeboxes2',
+              data: {
+                title: currentThreeBoxesData2?.title || '',
+                subtitle: currentThreeBoxesData2?.subtitle || '',
+                extratext: currentThreeBoxesData2.extratext || '',
+                items: currentThreeBoxesData2?.items || [],
+              },
+            },
+
+            {
+              type: 'threeboxes3',
+              data: {
+                title: currentThreeBoxesData3?.title || '',
+                subtitle: currentThreeBoxesData3?.subtitle || '',
+                extratext: currentThreeBoxesData3.extratext || '',
+                items: currentThreeBoxesData3?.items || [],
+              },
             },
 
             {
@@ -1010,9 +1028,7 @@ export const Page = () => {
   };
 
   const pageName = usePageTitle(postid);
-
   const selectedTabs = tabsByTemplate[templateField] || [];
-
   if (isLoading) return <div className="text-center py-10">Loading...</div>;
   return (
     <form onSubmit={handleSubmit}>

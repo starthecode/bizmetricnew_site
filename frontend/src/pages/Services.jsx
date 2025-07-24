@@ -4,6 +4,9 @@ import TempServices from '../components/Templates/TempServices';
 import NotFound from '../NotFound';
 import NumericLoader from '../components/Loader/NumericLoader';
 import SeoComp from '../components/SeoComp';
+import PagePostHero from '../components/HeroSection/PagePostHero';
+import GlowLight from '../components/extras/GlowLight';
+import { BoxesItems } from '../components/page/ServicesPage/BoxesItems';
 
 export default function Services() {
   const { slug } = useParams();
@@ -14,6 +17,20 @@ export default function Services() {
   const [data, setData] = useState(null);
   const [title, setTitle] = useState('');
   const [seoData, setSeoData] = useState({});
+
+  const [pageHeaderData, setPageHeaderData] = useState({
+    title: '',
+    smalltitle: '',
+    excerpts: '',
+    bannerImg: '',
+    customMetaTitle: '',
+    customMetaDesc: '',
+    customMetaLink: '',
+    customMetaLinkText: '',
+    customMetaLinkTwo: '',
+    customMetaLinkTwoText: '',
+    customMetaExtra: '',
+  });
 
   const [notFound, setNotFound] = useState(false);
 
@@ -44,6 +61,21 @@ export default function Services() {
         setData(json);
         setTitle(json.title);
         setSeoData(json?.seo);
+        setPageHeaderData({
+          title: json.title || '',
+          smalltitle: 'Services',
+          excerpts: json.excerpts || '',
+          bannerImg: json.metaFields?.featuredImage || '',
+          customMetaTitle: json?.customMetaFields?.customMetaTitle || '',
+          customMetaDesc: json?.customMetaFields?.customMetaDesc || '',
+          customMetaLink: json?.customMetaFields?.customMetaLink || '',
+          customMetaLinkText: json?.customMetaFields?.customMetaLinkText || '',
+          customMetaLinkTwo: json?.customMetaFields?.customMetaLinkTwo || '',
+          customMetaLinkTwoText:
+            json?.customMetaFields?.customMetaLinkTwoText || '',
+          customMetaExtra: json?.customMetaFields?.customMetaExtra || '',
+          customMetaExtra2: json?.customMetaFields?.customMetaExtra2 || '',
+        });
       } catch (error) {
         console.error(error.message || 'Something went wrong');
         setNotFound(true);
@@ -78,7 +110,13 @@ export default function Services() {
         image={seoData?.image}
         url={`https://yourdomain.com/blog/${seoData?.slug}`}
       />
-      <TempServices data={data} title={title} />;
+
+      {/* <PagePostHero {...pageHeaderData} /> */}
+      <GlowLight classes={'top-[25%] left-0 bg-flamingo-600/40'} />
+      {/* <TempServices data={data} title={title} />; */}
+      <BoxesItems
+        data={data?.content?.find((c) => c.type === 'threeboxes')?.data || ''}
+      />
     </div>
   );
 }

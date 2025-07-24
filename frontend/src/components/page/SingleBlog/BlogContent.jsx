@@ -1,4 +1,3 @@
-import React from 'react';
 import PostTags from './PostTags';
 import SharePost from './SharePost';
 import PostCategories from './PostCategories';
@@ -8,11 +7,9 @@ export default function BlogContent({ content, metaFields }) {
 
   const content2 = content.find((c) => c.type === 'blogEditor')?.data || '';
 
-
   return (
     <div className="blog__content px-40">
       <PostCategories catItems={metaFields?.categories || ''} />
-
       <div className="space-y-4">
         {content1.blocks?.map((block) => {
           switch (block.type) {
@@ -52,7 +49,7 @@ export default function BlogContent({ content, metaFields }) {
         })}
       </div>
 
-      <div className='flex justify-between'>
+      <div className="flex justify-between">
         <PostTags tagItems={metaFields?.tags || ''} />
         <SharePost />
       </div>

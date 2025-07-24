@@ -24,9 +24,14 @@ export default function ServicesFields({
       <div
         style={{ display: activeTab === 'tab-servicesBox2' ? 'block' : 'none' }}
       >
-        <OverviewBoxes
-          ref={(el) => (sectionsRef.current.OverviewBoxes = el)}
-          overviewBoxesData={servicesFields?.overviewBoxesData}
+        <ThreeBoxes
+          ref={(el) => (sectionsRef.current.ThreeBoxes2 = el)}
+          threeBoxesData={servicesFields?.threeBoxesData2}
+        />
+
+        <ThreeBoxes
+          ref={(el) => (sectionsRef.current.ThreeBoxes3 = el)}
+          threeBoxesData={servicesFields?.threeBoxesData3}
         />
       </div>
 

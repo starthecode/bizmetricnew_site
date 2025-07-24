@@ -9,6 +9,7 @@ import ShortYouTubeEmbed from '../extras/ShortYouTubeEmbed';
 import GlowLight from '../extras/GlowLight';
 import LiteYouTubeEmbed from '../extras/LiteYouTubeEmbed';
 import SideTwoImages from '../page/ContactUs/SideTwoImages';
+import YoutubeEmbedVideo from '../extras/embed/YoutubeEmbedVideo';
 
 export default function PagePostHero({
   alignCenter,
@@ -65,7 +66,7 @@ export default function PagePostHero({
               <Breadcrumbs capitalizeLinks />
               <div>
                 <PageHeading
-                  classes={alignCenter && 'items-center'}
+                  classes={alignCenter && 'items-center text-center'}
                   type={''}
                   smallTitle={smalltitle ? smalltitle : title}
                   title={customMetaTitle ? customMetaTitle : title}
@@ -111,7 +112,11 @@ export default function PagePostHero({
                         ) : type === 'life-at-bizmetric' ? (
                           <ShortYouTubeEmbed videoId={customMetaExtra || ''} />
                         ) : (
-                          ''
+                          <div className="-mt-40">
+                            <YoutubeEmbedVideo
+                              videoId={customMetaExtra || ''}
+                            />
+                          </div>
                         )}
                       </motion.div>
                     </div>

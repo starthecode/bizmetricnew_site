@@ -5,7 +5,6 @@ import { useEffect, useRef } from 'react';
 import { useInView } from 'framer-motion';
 
 export default function PageHeading({
-  alignCenter,
   type,
   smallTitle,
   title,
@@ -57,7 +56,7 @@ export default function PageHeading({
         ref={ref}
         initial={{ opacity: 0 }}
         animate={controls}
-        className={`block leading-tight text-[2.90rem] text-[#F4FFFA00] bg-clip-text bg-gradient-to-b ${
+        className={`block leading-tight ${classes} text-[2.50rem] text-[#F4FFFA00] bg-clip-text bg-gradient-to-b ${
           type === 'dark'
             ? 'from-black to-junglegreen-500'
             : 'from-junglegreen-500 to-white'

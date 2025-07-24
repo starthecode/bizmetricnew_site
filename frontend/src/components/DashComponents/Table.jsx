@@ -33,8 +33,8 @@ export default function TableComp({ data = [], type }) {
     setCurrentPage(page);
   };
 
-  const handleDelete = (pageId) => {
-    handlePageDelete({ postid: pageId, navigate, toast });
+  const handleDelete = (pageId, type) => {
+    handlePageDelete({ type, postid: pageId, navigate, toast });
   };
 
   return (
@@ -102,7 +102,7 @@ export default function TableComp({ data = [], type }) {
                   </Link>{' '}
                   <button
                     type="button"
-                    onClick={() => handleDelete(item?.pageId)}
+                    onClick={() => handleDelete(item?.pageId, type)}
                     className="hover:underline text-[1.3em] text-red-500"
                   >
                     Trash

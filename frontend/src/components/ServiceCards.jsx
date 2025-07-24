@@ -53,12 +53,13 @@ export const ServiceCards = ({ item, index }) => {
           <div className="relative z-20 flex flex-col gap-5 h-full items-start text-left mt-8">
             <div className="w-fit px-5 shadow-xl shadow-white/10 border border-junglegreen-200 border-l-0 relative font-medium text-sm inline-flex items-center gap-2 py-2 rounded-tr-xl rounded-br-xl">
               <span className="font-semibold text-md text-[#F4FFFA00] bg-clip-text bg-gradient-to-b from-white to-white/80">
-                {item?.servicesName}
+                {item?.threeboxesinput1}
               </span>
             </div>
-            <p className="text-sm font-thin text-white px-2 w-[250px]">
-              {item?.servicesDesc}
-            </p>
+            <p
+              className="text-sm font-thin text-white px-2 w-[250px]"
+              dangerouslySetInnerHTML={{ __html: item?.threeboxesinput2 }}
+            />
 
             {item?.servicesLink && (
               <div className="px-2">

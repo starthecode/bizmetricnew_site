@@ -12,18 +12,19 @@ import TempAboutus from '../components/Templates/TempAboutus';
 import TempContactus from '../components/Templates/TempContactus';
 import NumericLoader from '../components/Loader/NumericLoader';
 import NewslettersPage from '../components/page/Newsletters/NewslettersPage';
+import SeoComp from '../components/SeoComp';
 
 export default function SharedPage() {
   const { slug } = useParams();
-
-  console.log('slug', slug);
-
   const startTime = Date.now();
 
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState(null);
+  const [seoData, setSeoData] = useState({});
+
   const [pageHeaderData, setPageHeaderData] = React.useState({
     title: '',
+    smalltitle: '',
     excerpts: '',
     bannerImg: '',
     customMetaTitle: '',
@@ -73,8 +74,11 @@ export default function SharedPage() {
         }
 
         setData(json);
+        setSeoData(json?.seo);
+
         setPageHeaderData({
           title: json.title || '',
+          smalltitle: json.parentPage || '',
           excerpts: json.excerpts || '',
           bannerImg: json.metaFields?.featuredImage || '',
           customMetaTitle: json?.customMetaFields?.customMetaTitle || '',
@@ -114,6 +118,13 @@ export default function SharedPage() {
 
   return (
     <>
+      <SeoComp
+        seoTitle={seoData?.seoTitle}
+        description={seoData?.seoDescription}
+        keywords={seoData?.focusKeyphrase}
+        image={seoData?.image}
+        url={`https://yourdomain.com/blog/${seoData?.slug}`}
+      />
       <PagePostHero alignCenter={false} type={slug} {...pageHeaderData} />
       {slug === 'life-at-bizmetric' ? (
         <TempLiftAtBiz data={data} />
@@ -124,7 +135,7 @@ export default function SharedPage() {
       ) : slug === 'newsletters' ? (
         <NewslettersPage />
       ) : (
-        ''
+        <TempServices data={data} title={''} />
       )}
     </>
   );
