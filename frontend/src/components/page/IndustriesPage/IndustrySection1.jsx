@@ -5,8 +5,8 @@ import { useInView } from 'react-intersection-observer';
 import { motion, useAnimation } from 'framer-motion';
 import { Heading } from '../../Heading/Heading';
 import GlowLight from '../../extras/GlowLight';
-import Line5 from '../../lines';
 import YoutubeEmbedVideo from '../../extras/embed/YoutubeEmbedVideo';
+import { Line5 } from '../../lines';
 
 const IndustrySection1 = ({ aboutIndustryData1, aboutIndustryData2 }) => {
   const controls = useAnimation();

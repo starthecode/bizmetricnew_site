@@ -1,6 +1,4 @@
-import React from 'react';
 import { Heading } from '../Heading/Heading';
-import Line5 from '../lines';
 import { motion } from 'framer-motion';
 import LiteYouTubeEmbed from '../extras/LiteYouTubeEmbed';
 import FiveCards from '../Cards/FiveCards';
@@ -8,6 +6,7 @@ import FeedbackSlider from '../FeedbackSlider';
 import { GalleryWithTab } from '../extras/GalleryWithTab';
 import AwardsRecognition from '../extras/AwardsRecognition';
 import YoutubeEmbedVideo from '../extras/embed/YoutubeEmbedVideo';
+import { Line5 } from '../lines';
 
 export default function TempLiftAtBiz({ data }) {
   return (

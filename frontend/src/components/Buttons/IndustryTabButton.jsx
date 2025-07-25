@@ -42,15 +42,15 @@ const IndustryTabButton = ({
       animate={controls}
       key={index}
       onClick={() => setActiveTab(tab.threeboxesinput2)}
-      className={`px-5 py-8 capitalize w-[200px] sm:w-[100px] md:w-[100px] lg:w-[200px] hover:bg-junglegreen-600/30 rounded-lg shadow-sm text-center border ${
+      className={`group  px-5 py-8 capitalize w-[200px] border-junglegreen-500 sm:w-[100px] md:w-[100px] lg:w-[200px] hover:bg-junglegreen-500 rounded-lg shadow-sm text-center border ${
         activeTab === tab.threeboxesinput2
-          ? 'bg-junglegreen-500 border-junglegreen-200'
+          ? 'bg-junglegreen-600 border-junglegreen-200'
           : 'bg-white'
       } transition-all`}
     >
       <div className="flex flex-col items-center gap-1">
         <span
-          className={`text-md font-medium ${
+          className={`text-md font-medium group-hover:text-white ${
             activeTab === tab.threeboxesinput2
               ? 'text-white'
               : 'text-junglegreen-500'
@@ -59,8 +59,10 @@ const IndustryTabButton = ({
           {IconComponent && <IconComponent size={24} />}
         </span>
         <span
-          className={`text-xs sm:text-xs md:text-sm lg:text-md xl:text-md 2xl:text-md font-semibold ${
-            activeTab === tab.threeboxesinput2 ? 'text-white' : 'text-junglegreen-900'
+          className={`text-xs sm:text-xs md:text-sm lg:text-md xl:text-md 2xl:text-md font-semibold group-hover:text-white ${
+            activeTab === tab.threeboxesinput2
+              ? 'text-white'
+              : 'text-junglegreen-900'
           } transition-all`}
         >
           {tab.threeboxesinput2}

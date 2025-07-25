@@ -1,5 +1,5 @@
 import { Heading } from '../../Heading/Heading';
-import Line5 from '../../lines';
+import { Line5 } from '../../lines';
 
 export default function SolutionsSection4({ data }) {
   if (!data?.items || data.items.length === 0) return null;

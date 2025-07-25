@@ -3,6 +3,7 @@ import OverviewBoxes from '../ServicesPage/OverviewBoxes';
 import WhyBizmetricComp from '../ServicesPage/WhyBizmetricComp';
 import ApproachComp from '../ServicesPage/ApproachComp';
 import OtherServicesComp from '../ServicesPage/OtherServicesComp';
+import FiveBoxes from '../ServicesPage/FiveBoxes';
 
 export default function ServicesFields({
   activeTab,
@@ -24,9 +25,9 @@ export default function ServicesFields({
       <div
         style={{ display: activeTab === 'tab-servicesBox2' ? 'block' : 'none' }}
       >
-        <ThreeBoxes
-          ref={(el) => (sectionsRef.current.ThreeBoxes2 = el)}
-          threeBoxesData={servicesFields?.threeBoxesData2}
+        <FiveBoxes
+          ref={(el) => (sectionsRef.current.FiveBoxes = el)}
+          fiveBoxesData={servicesFields?.fiveBoxesData}
         />
 
         <ThreeBoxes

@@ -73,14 +73,12 @@ export const Page = () => {
       extratext: '',
       items: [{ logoUrl: '', caseStudyUrl: '' }],
     },
-    servicesTitle: '',
-    servicesData: [
-      {
-        servicesImage: null,
-        servicesName: '',
-        servicesDesc: '',
-      },
-    ],
+    fiveBoxesData: {
+      title: '',
+      subtitle: '',
+      extratext: '',
+      items: [defaultFiveBoxesData],
+    },
     industryTitle: '',
     industryData: [defaultIndustryData],
     whychooseTitle: '',
@@ -98,11 +96,11 @@ export const Page = () => {
       extratext: '',
       items: [defaultThreeBoxesData],
     },
-    threeBoxesData2: {
+    fiveBoxesData: {
       title: '',
       subtitle: '',
       extratext: '',
-      items: [defaultThreeBoxesData],
+      items: [defaultFiveBoxesData],
     },
 
     threeBoxesData3: {
@@ -426,11 +424,11 @@ export const Page = () => {
               extratext: threeBoxesContent?.data?.extratext || '',
               items: threeBoxesContent?.data?.items || [],
             },
-            threeBoxesData2: {
-              title: threeBoxes2Content?.data?.title || '',
-              subtitle: threeBoxes2Content?.data?.subtitle || '',
-              extratext: threeBoxes2Content?.data?.extratext || '',
-              items: threeBoxes2Content?.data?.items || [],
+            fiveBoxesData: {
+              title: fiveBoxesContent?.data?.title || '',
+              subtitle: fiveBoxesContent?.data?.subtitle || '',
+              extratext: fiveBoxesContent?.data?.extratext || '',
+              items: fiveBoxesContent?.data?.items || [],
             },
             threeBoxesData3: {
               title: threeBoxes3Content?.data?.title || '',
@@ -550,10 +548,6 @@ export const Page = () => {
           (item) => item.type === 'slider'
         );
 
-        const servicesContent = contentArray.find(
-          (item) => item.type === 'services'
-        );
-
         const industryContent = contentArray.find(
           (item) => item.type === 'industry'
         );
@@ -577,14 +571,12 @@ export const Page = () => {
               extratext: partnerslogoContent?.data?.extratext || '',
               items: partnerslogoContent?.data?.items || [],
             },
-          }));
-        }
-
-        if (servicesContent?.data) {
-          setHomepageFields((prev) => ({
-            ...prev,
-            servicesTitle: servicesContent.data.title || '',
-            servicesData: servicesContent.data.items || [],
+            fiveBoxesData: {
+              title: fiveBoxesContent?.data?.title || '',
+              subtitle: fiveBoxesContent?.data?.subtitle || '',
+              extratext: fiveBoxesContent?.data?.extratext || '',
+              items: fiveBoxesContent?.data?.items || [],
+            },
           }));
         }
 
@@ -693,8 +685,6 @@ export const Page = () => {
 
     //homepage
     const currentSliderData = sectionsRef.current.slider?.getSlidersData?.();
-    const currentServicesData =
-      sectionsRef.current.services?.getServicesData?.();
     const currentIndustryData =
       sectionsRef.current.industry?.getIndustryData?.();
     const currentWhychooseData =
@@ -749,10 +739,12 @@ export const Page = () => {
               },
             },
             {
-              type: 'services',
+              type: 'fiveboxes',
               data: {
-                title: homepageFields?.servicesTitle,
-                items: currentServicesData,
+                title: currentFiveBoxesData?.title || '',
+                subtitle: currentFiveBoxesData?.subtitle || '',
+                extratext: currentFiveBoxesData.extratext || '',
+                items: currentFiveBoxesData?.items || [],
               },
             },
             {
@@ -798,12 +790,12 @@ export const Page = () => {
               },
             },
             {
-              type: 'threeboxes2',
+              type: 'fiveboxes',
               data: {
-                title: currentThreeBoxesData2?.title || '',
-                subtitle: currentThreeBoxesData2?.subtitle || '',
-                extratext: currentThreeBoxesData2.extratext || '',
-                items: currentThreeBoxesData2?.items || [],
+                title: currentFiveBoxesData?.title || '',
+                subtitle: currentFiveBoxesData?.subtitle || '',
+                extratext: currentFiveBoxesData.extratext || '',
+                items: currentFiveBoxesData?.items || [],
               },
             },
 
@@ -971,7 +963,6 @@ export const Page = () => {
 
     if (postid || actionType === 'edit') {
       console.log('payload edit', payload);
-
       try {
         const res = await fetch(`/api/page/update/${postid}`, {
           method: 'PUT',
@@ -1045,7 +1036,6 @@ export const Page = () => {
             editorContent={editorContent}
             setEditorContent={setEditorContent}
           />
-
           {selectedTabs.length > 0 && (
             <div className="border border-gray-300 rounded-md">
               <div className="border-b border-gray-200 flex text-xs">

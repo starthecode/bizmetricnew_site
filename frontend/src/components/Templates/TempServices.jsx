@@ -15,7 +15,7 @@ export default function TempServices({ data }) {
 
       <OverviewVerticles
         overviewData={
-          data?.content?.find((c) => c.type === 'threeboxes2')?.data || ''
+          data?.content?.find((c) => c.type === 'fiveboxes')?.data || ''
         }
       />
       <IndustryAccordions />

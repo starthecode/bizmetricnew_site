@@ -49,7 +49,7 @@ export default function App() {
               <Route path="/" element={<Home />} />
               <Route path="/blogs" element={<Blogs />} />
               <Route path="/blogs/:slug" element={<BlogSingle />} />
-              <Route path="/services/:slug" element={<Services />} />
+              <Route path="/services/:slug" element={<SharedPage />} />
               <Route path="/industries/:slug" element={<Industries />} />
               <Route path="/solutions/:slug" element={<SolutionsPage />} />
               <Route path="/success-stories" element={<SuccessStories />} />

@@ -1,10 +1,9 @@
 import { Heading } from './Heading/Heading';
 import { ServiceCards } from './ServiceCards';
 import BackgroundSection from './BackgroundSection';
+import { SVGLine4 } from './lines';
 
 export const OverviewVerticles = ({ overviewData }) => {
-  console.log('overviewData', overviewData);
-
   return (
     <BackgroundSection>
       <div className="h-full max-w-full px-0 sm:px-0 md:px-40 lg:px-40 xl:px-40">
@@ -17,13 +16,16 @@ export const OverviewVerticles = ({ overviewData }) => {
             subText={overviewData?.extratext}
           />
         </div>
-        <div className="w-full flex flex-col justify-center items-center sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-3 xl:grid xl:grid-cols-3 gap-10 mt-10 ">
+        <div className="relative z-20 w-full flex flex-col justify-center items-center sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-3 xl:grid xl:grid-cols-3 gap-10 mt-10 ">
           {overviewData?.items?.map((item, index) => (
             <div key={index}>
               <ServiceCards item={item} index={index} />
             </div>
           ))}
         </div>
+      </div>
+      <div className="absolute w-full top-[340px] flex justify-center z-10">
+        <SVGLine4 />
       </div>
     </BackgroundSection>
   );

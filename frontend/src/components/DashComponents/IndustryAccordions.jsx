@@ -117,7 +117,7 @@ export default function IndustryAccordions() {
               {(contentData[activeTab] || []).map((item, index) => (
                 <div
                   key={index}
-                  className="group border rounded-2xl p-4 hover:shadow-md transition-all flex flex-col justify-between"
+                  className="group border rounded-2xl p-4 hover:shadow-md bg-white transition-all flex flex-col justify-between"
                 >
                   <div className="absolute">
                     <SecondaryButton title={''} link={''} />

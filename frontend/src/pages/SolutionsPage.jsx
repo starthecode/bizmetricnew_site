@@ -6,7 +6,6 @@ import { useParams } from 'react-router-dom';
 import NotFound from '../NotFound';
 import GlowLight from '../components/extras/GlowLight';
 import { Heading } from '../components/Heading/Heading';
-import Line5 from '../components/lines';
 import SolutionsSection3 from '../components/page/SolutionsPage/SolutionsSection3';
 import SolutionsSection4 from '../components/page/SolutionsPage/SolutionsSection4';
 import SolutionsSection5 from '../components/page/SolutionsPage/SolutionsSection5';
@@ -17,6 +16,7 @@ import PagePostHero from '../components/HeroSection/PagePostHero';
 import FiveCards from '../components/Cards/FiveCards';
 import NumericLoader from '../components/Loader/NumericLoader';
 import YoutubeEmbedVideo from '../components/extras/embed/YoutubeEmbedVideo';
+import { Line5 } from '../components/lines';
 
 export default function SolutionsPage() {
   const { slug } = useParams();

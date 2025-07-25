@@ -7,6 +7,8 @@ import ServicesComp from './ServicesComp';
 import AboutComp from './AboutComp';
 import PartnerComp from './PartnerComp';
 import SliderForm from './SliderComp';
+import ThreeBoxes from '../ServicesPage/ThreeBoxes';
+import FiveBoxes from '../ServicesPage/FiveBoxes';
 
 export default function HomeFields({
   activeTab,
@@ -36,16 +38,12 @@ export default function HomeFields({
           setAboutFields={setHomepageFields?.setAboutFields}
         />
       </div>
-
       <div style={{ display: activeTab === 'tab-homeBox4' ? 'block' : 'none' }}>
-        <ServicesComp
-          ref={(el) => (sectionsRef.current.services = el)}
-          servicesData={homepageFields?.servicesData}
-          servicesTitle={homepageFields?.servicesTitle}
-          setServicesTitle={setHomepageFields?.setServicesTitle}
+        <FiveBoxes
+          ref={(el) => (sectionsRef.current.FiveBoxes = el)}
+          fiveBoxesData={homepageFields?.fiveBoxesData}
         />
       </div>
-
       <div style={{ display: activeTab === 'tab-homeBox5' ? 'block' : 'none' }}>
         <IndustryComp
           ref={(el) => (sectionsRef.current.industry = el)}
