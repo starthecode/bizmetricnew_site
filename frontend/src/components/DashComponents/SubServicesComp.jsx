@@ -1,8 +1,8 @@
-import React from 'react';
 import { PrimaryButton } from '../Buttons/PrimaryButton';
 import { Heading } from '../Heading/Heading';
 
 export default function SubServicesComp({ otherservicesData }) {
+  console.log('otherservicesData', otherservicesData);
   return (
     <div className="flex flex-col justify-center items-center mt-20">
       <div className="w-full flex justify-center text-center items-center">
@@ -16,7 +16,7 @@ export default function SubServicesComp({ otherservicesData }) {
           classes="items-center"
         />
       </div>
-      <div className="grid grid-cols-3">
+      <div className="grid grid-cols-2 xl:grid-cols-3">
         {otherservicesData?.map((item, index) => (
           <div
             key={index}
@@ -27,7 +27,7 @@ export default function SubServicesComp({ otherservicesData }) {
               alt={item.otherservicesInput2}
               className="rounded-xl object-cover w-full h-56"
             />
-            <h2 className="text-center text-lg font-semibold text-gray-800 mt-4">
+            <h2 className="text-center text-xs sm:text-md md:text-md lg:text-md xl:text-lg font-semibold text-gray-800 mt-4">
               {item.otherservicesInput2}
             </h2>
             <div className="mt-3">

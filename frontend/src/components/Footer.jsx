@@ -3,6 +3,7 @@ import { Logo } from './Logo';
 import GlowLight from './extras/GlowLight';
 import { SecondaryButton } from './Buttons/SecondaryButton';
 import FooterCta from './FooterCta';
+import { IoIosArrowForward } from 'react-icons/io';
 
 const Footer = () => {
   return (
@@ -52,9 +53,10 @@ const Footer = () => {
                   ].map((item) => (
                     <li
                       key={item}
-                      className="cursor-pointer text-sm xl:text-md text-woodsmoke-200 hover:text-flamingo-500 py-1"
+                      className="cursor-pointer flex items-center gap-1 text-sm xl:text-md text-woodsmoke-200 hover:text-flamingo-500 py-1"
                     >
-                      &rarr; {item}
+                      <IoIosArrowForward size={15} className='fill-junglegreen-500' />
+                      {item}
                     </li>
                   ))}
                 </ul>

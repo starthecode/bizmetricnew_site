@@ -19,7 +19,6 @@ import { Inquires } from './pages/Dashboard/Inquires';
 import Blogs from './pages/Blogs';
 import ForntLayout from './components/Layouts/ForntLayout';
 import BlogSingle from './components/BlogSingle';
-import Services from './pages/Services';
 import Industries from './pages/Industries';
 import NotFound from './NotFound';
 import { PostSolutions } from './pages/Dashboard/Custom/PostSolutions';
@@ -38,6 +37,10 @@ import SingleCaseStudy from './components/page/CaseStudy/SingleCaseStudy';
 import { CaseStudies } from './pages/Dashboard/CaseStudies';
 import PostCustomizer from './pages/Dashboard/Appearance/Customizer/PostCustomizer';
 import ShowPolls from './pages/Dashboard/Appearance/Customizer/Poll/ShowPolls';
+import { PostCareers } from './pages/Dashboard/Custom/PostCareers';
+import { CareersAll } from './pages/Dashboard/CareersAll';
+import { Profile } from './components/DashComponents/Profile';
+import DashUsers from './components/DashComponents/DashUsers';
 
 export default function App() {
   return (
@@ -71,14 +74,26 @@ export default function App() {
               <Route element={<DashboardLayout />}>
                 <Route path="/dashboard" element={<Dashboard />} />
                 <Route element={<PermissionPrivateRoute />}>
-                  <Route path="/dashboard/post-new" element={<Post />} />
-                  <Route path="/dashboard/page-new" element={<Page />} />
+                  <Route path="/dashboard/new-post" element={<Post />} />
+                  <Route path="/dashboard/new-page" element={<Page />} />
                   <Route path="/dashboard/pages" element={<Pages />} />
                   <Route path="/dashboard/posts" element={<Posts />} />
                   <Route path="/dashboard/inquires" element={<Inquires />} />
 
+                  <Route path="/dashboard/users" element={<DashUsers />} />
                   <Route
-                    path="/dashboard/solution-new"
+                    path="/dashboard/users/user/:slug"
+                    element={<Profile />}
+                  />
+
+                  <Route
+                    path="/dashboard/new-career"
+                    element={<PostCareers />}
+                  />
+                  <Route path="/dashboard/careers" element={<CareersAll />} />
+
+                  <Route
+                    path="/dashboard/new-solution"
                     element={<PostSolutions />}
                   />
                   <Route path="/dashboard/solutions" element={<Solutions />} />

@@ -1,16 +1,14 @@
 import { FiArrowRight } from 'react-icons/fi';
 import { SecondaryButton } from '../../Buttons/SecondaryButton';
 import { IoIosArrowDroprightCircle } from 'react-icons/io';
+import { Link } from 'react-router-dom';
 
-const CaseStudyCard = ({
-  category,
-  title,
-  description,
-  image,
-  categoryColor,
-}) => {
+const CaseStudyCard = ({ category, title, link }) => {
   return (
-    <div className="max-w-sm p-4 rounded-xl overflow-hidden border border-gray-300 shadow-sm bg-woodsmoke-500/10 hover:bg-flamingo-500/10 hover:shadow-md transition-shadow duration-300">
+    <Link
+      to={link}
+      className="max-w-sm p-4 rounded-xl overflow-hidden border border-gray-300 shadow-sm bg-woodsmoke-500/10 hover:bg-flamingo-500/10 hover:shadow-md transition-shadow duration-300"
+    >
       <img
         src="https://bizsiteuploads.blob.core.windows.net/uploads/1750742181912-case-study-img787874545.webp"
         alt="Case Study"
@@ -37,7 +35,7 @@ const CaseStudyCard = ({
           <IoIosArrowDroprightCircle size={20} className="fill-flamingo-500" />
         </div>
       </div>
-    </div>
+    </Link>
   );
 };
 

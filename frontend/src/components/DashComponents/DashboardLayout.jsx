@@ -13,7 +13,7 @@ const DashboardLayout = () => {
         <div className="w-full h-screen overflow-y-auto">
           <div className="absolute h-[200px] inset-0 -top-[125px] opacity-20 blur bg-conic-gradient"></div>
           <div className="p-10">
-            <Outlet /> {/* This is where nested dashboard pages render */}
+            <Outlet />
           </div>
         </div>
       </div>

@@ -18,8 +18,6 @@ export const CaseStudies = () => {
 
         const data = await res.json();
 
-        console.log('data', data);
-
         if (!res.ok) {
           toast.error(data.message || 'Failed to fetch pages');
         } else {
@@ -40,7 +38,7 @@ export const CaseStudies = () => {
       {loading ? (
         <div className="text-center py-10 text-gray-500">Loading...</div>
       ) : (
-        <TableComp type="casestudies" data={caseStudiesData} />
+        <TableComp type="casestudy" data={caseStudiesData} />
       )}
     </div>
   );

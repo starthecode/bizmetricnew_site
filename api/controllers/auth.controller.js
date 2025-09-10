@@ -27,14 +27,35 @@ export const signup = async (req, res, next) => {
     const savedUser = await newUser.save();
 
     // ✅ Send a proper JSON response
-    res.status(201).json({
-      message: 'User registered successfully',
-      user: {
+    // res.status(201).json({
+    //   message: 'User registered successfully',
+    //   user: {
+    //     id: savedUser._id,
+    //     userName: savedUser.userName,
+    //     email: savedUser.email,
+    //   },
+    // });
+
+    const token = jwt.sign(
+      {
         id: savedUser._id,
-        userName: savedUser.userName,
-        email: savedUser.email,
+        isAdmin: savedUser.isAdmin,
+        role: savedUser.role,
       },
-    });
+      process.env.JWT_SECRET,
+      { expiresIn: '10h' }
+    );
+
+    const { password: pass, ...rest } = savedUser._doc;
+
+    res
+      .status(200)
+      .cookie('access_token', token, {
+        httpOnly: true,
+        secure: false, // only use true if HTTPS (prod)
+        sameSite: 'Lax', // or 'None' if cross-origin + secure
+      })
+      .json(rest);
   } catch (error) {
     return next(error);
   }
@@ -84,5 +105,35 @@ export const signin = async (req, res, next) => {
       .json(rest);
   } catch (error) {
     return next(error);
+  }
+};
+
+// Add this to your auth routes (e.g., auth.route.js)
+export const updatePassword = async (req, res, next) => {
+  const { email, newPassword } = req.body;
+
+  if (!email || !newPassword || email === '' || newPassword === '') {
+    return next(errorhandler(400, 'All fields are required'));
+  }
+
+  try {
+    const user = await User.findOne({ email });
+    if (!user) {
+      return next(errorhandler(404, 'User not found'));
+    }
+
+    // Hash the new password
+    const hashedPassword = bcryptjs.hashSync(newPassword, 10);
+
+    // Update user's password
+    user.password = hashedPassword;
+    await user.save();
+
+    res.status(200).json({
+      success: true,
+      message: 'Password updated successfully',
+    });
+  } catch (error) {
+    next(error);
   }
 };

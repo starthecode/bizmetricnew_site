@@ -15,18 +15,19 @@ const iconMap = {
 
 export default function Choose({ data }) {
   return (
-    <section className="max-w-full px-10 sm:px-0 md:px-10 lg:px-20 xl:px-40 mt-20 pb-20 bg-white">
+    <section className="max-w-full px-10 sm:px-0 md:px-10 lg:px-20 xl:px-40 mt-10 pb-20 bg-white">
       <SvgLine3 />
 
       <GlowLight classes={'top-1/1 right-0 bg-flamingo-600/40'} />
       <div className="text-left mb-10">
         <Heading
+          classes={'items-center xl:items-start'}
           type={'dark'}
           title={data?.title}
           smallTitle={'Why Choose Our Services'}
         />
       </div>
-      <div className="mt-20">
+      <div className="mt-10 xl:mt-20">
         <div className="w-full flex flex-col justify-center items-center">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 relative">
             {data?.items &&
@@ -41,7 +42,7 @@ export default function Choose({ data }) {
                         : 'w-full sm:w-full md:w-full lg:w-full xl:w-[530px]'
                     } ${
                       index === 0
-                        ? 'relative left-5 bg-gradient-to-br from-blue-800 to-blue-500'
+                        ? 'relative left-0 xl:left-5 bg-gradient-to-br from-blue-800 to-blue-500'
                         : ''
                     }
               ${

@@ -8,7 +8,7 @@ export default function Testimonials({ data }) {
       <div>
         <Heading
           type={''}
-          smallTitle={'CLIENT TESTIMONIALS'}
+          smallTitle={'CLIENT TESTIMONIALS1'}
           title={data?.title}
         />
       </div>

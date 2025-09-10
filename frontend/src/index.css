@@ -257,7 +257,8 @@
   .mobile-nav--active {
     align-items: flex-start !important;
     display: flex;
-    flex-direction: column;
+    width: auto;
+    /* flex-direction: column; */
     opacity: 1 !important;
     visibility: visible !important;
   }
@@ -384,7 +385,7 @@
 }
 
 .large-menu {
-  @apply top-[50px] z-20 w-full transition-all;
+  @apply z-20 w-full transition-all;
 }
 
 .blog__content .spaces {
@@ -436,7 +437,7 @@
   @apply rounded-full bg-zinc-900/5 ring-1 ring-zinc-900/25;
 }
 .mobile-nav-btns {
-  @apply fixed left-0 right-0 mx-auto z-10 items-center justify-between;
+  @apply left-0 right-0 mx-auto z-10 items-center justify-between;
 }
 
 .slick-list .slick-track {
@@ -444,11 +445,31 @@
 }
 
 .btn-primary {
-  @apply bg-flamingo-500 hover:bg-flamingo-600 text-white rounded-md p-2;
+  @apply bg-flamingo-500 hover:bg-flamingo-600 text-white rounded-md px-2 py-1 text-sm;
 }
 
 .btn-secondary {
-  @apply bg-junglegreen-500 hover:bg-junglegreen-500 text-white rounded-md p-2;
+  @apply bg-junglegreen-500 hover:bg-junglegreen-500 text-white rounded-md px-2 py-1 text-sm;
+}
+
+.careers_content h5 {
+  @apply text-lg font-semibold mt-5;
+}
+
+.careers_content p {
+  @apply text-woodsmoke-600 mt-4;
+}
+
+.careers_content li {
+  @apply text-woodsmoke-600 mt-2;
+}
+
+.careers_content li:before {
+  content: '\2022';
+  font-size: 25px;
+  color: #ff671b;
+  padding-right: 10px;
+  line-height: 25px;
 }
 
 .slick-slider .slick-prev {

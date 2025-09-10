@@ -1,6 +1,6 @@
 import ThreeBoxes from '../ServicesPage/ThreeBoxes';
 import OverviewBoxes from '../ServicesPage/OverviewBoxes';
-import WhyBizmetricComp from '../ServicesPage/WhyBizmetricComp';
+import WhyBizmetricComp from '../ServicesPage/FiveInputs';
 import ApproachComp from '../ServicesPage/ApproachComp';
 import OtherServicesComp from '../ServicesPage/OtherServicesComp';
 import PartnerComp from './PartnerComp';

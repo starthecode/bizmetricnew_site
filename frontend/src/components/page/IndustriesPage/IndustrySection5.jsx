@@ -23,6 +23,7 @@ export default function IndustrySection5({ aboutIndustryData6 }) {
       <div className="h-full max-w-full px-0 sm:px-0 md:px-40 lg:px-40 xl:px-40">
         <div className="flex justify-center items-start w-full">
           <Heading
+            classes={'xl:items-start items-center'}
             type={'dark'}
             smallTitle={'Why Bizmetric'}
             title={'Ready to Future-Proof Your Energy Operations?'}
@@ -30,7 +31,7 @@ export default function IndustrySection5({ aboutIndustryData6 }) {
           />
         </div>
         <div className="py-10">
-          <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10 text-center">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 xl:grid-cols-4 gap-10 text-center">
             {aboutIndustryData6 &&
               aboutIndustryData6?.map((item, index) => (
                 <div key={index}>

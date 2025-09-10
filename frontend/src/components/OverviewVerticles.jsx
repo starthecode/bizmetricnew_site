@@ -24,7 +24,7 @@ export const OverviewVerticles = ({ overviewData }) => {
           ))}
         </div>
       </div>
-      <div className="absolute w-full top-[340px] flex justify-center z-10">
+      <div className="absolute w-full top-[340px]  justify-center z-10 hidden xl:flex">
         <SVGLine4 />
       </div>
     </BackgroundSection>

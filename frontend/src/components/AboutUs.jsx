@@ -22,17 +22,18 @@ const AboutUs = ({ data }) => {
   }, [inView, controls]);
 
   return (
-    <section className="pt-10 xl:pt-24 py-10 px-24">
+    <section className="pt-10 xl:pt-24 py-10 px-5 xl:px-24">
       {/* <GlowLight classes={'top-[25%] left-0 bg-flamingo-600/40'} /> */}
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-full xl:max-w-7xl xl:mx-auto">
         <Heading
+          classes={'items-center xl:items-start'}
           type="dark"
           smallTitle={data?.smallTitle}
           title={data?.aboutTitle}
         />
         <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 gap-0 items-start pt-10">
           {/* Video */}
-          <div className="iframe__div relative w-fit" ref={ref}>
+          <div className="iframe__div relative w-fit mb-10 xl:mb-0" ref={ref}>
             <motion.div
               initial={{ x: -100, opacity: 0 }}
               animate={controls}
@@ -47,11 +48,13 @@ const AboutUs = ({ data }) => {
           {/* Text Content */}
           <div>
             <p
-              className="text-gray-700 text-md mb-8"
+              className="text-gray-700 text-md mb-8 text-center xl:text-left"
               dangerouslySetInnerHTML={{ __html: data?.descField }}
             />
 
-            <PrimaryButton title={data.buttonText} link={data.buttonUrl} />
+            <div className='w-full flex justify-center xl:justify-start'>
+              <PrimaryButton title={data.buttonText} link={data.buttonUrl} />
+            </div>
             {/* Stats */}
             <div
               className="mt-8 grid grid-cols-2 sm:grid-cols-4 gap-8 text-center"

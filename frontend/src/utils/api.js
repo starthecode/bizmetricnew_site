@@ -30,3 +30,20 @@ export async function fetchApi({
     throw error;
   }
 }
+
+export const handleSignout = async (dispatch, signoutSuccess) => {
+  try {
+    const res = await fetch('/api/user/signout', {
+      method: 'POST',
+    });
+
+    const data = await res.json();
+    if (!res.ok) {
+      console.error(data.message);
+    } else {
+      dispatch(signoutSuccess());
+    }
+  } catch (error) {
+    console.error(error.message);
+  }
+};

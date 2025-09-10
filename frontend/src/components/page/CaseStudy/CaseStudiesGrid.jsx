@@ -1,70 +1,22 @@
 import CaseStudyCard from './CaseStudyCard';
 
-const CaseStudiesGrid = () => {
-  const caseStudies = [
-    {
-      category: 'AWS',
-      title: 'Advanced Analytics (AWS)',
-      description:
-        'About the Domain Our Client is a Web Domain Service Provider...',
-      image: '/placeholder-aws.jpg',
-      categoryColor: 'bg-orange-100 text-orange-800',
-    },
-    {
-      category: 'DATA ANALYTICS',
-      title: 'Spotfire to Power BI Migration',
-      description:
-        'Core study: Spotfire to Power BI Migration Domain -Oil &...',
-      image: '/placeholder-analytics.jpg',
-      categoryColor: 'bg-blue-100 text-blue-800',
-    },
-    {
-      category: 'AI-ML-OPS',
-      title: 'ChatGPT Solutions',
-      description: 'Welcome to our in-depth case study on ChatGPT solutions...',
-      image: '/placeholder-ai.jpg',
-      categoryColor: 'bg-green-100 text-green-800',
-    },
-    {
-      category: 'AZURE LOGISTICS',
-      title: 'Hadoop Migration to Azure',
-      description:
-        'Explore our successful Hadoop to Azure migration case study...',
-      image: '/placeholder-hadoop.jpg',
-      categoryColor: 'bg-purple-100 text-purple-800',
-    },
-    {
-      category: 'ANALYTICS',
-      title: 'Salesperson Utility for Data Ingestion',
-      description:
-        'About the Domain Our client is a national organization of local...',
-      image: '/placeholder-sales.jpg',
-      categoryColor: 'bg-indigo-100 text-indigo-800',
-    },
-    {
-      category: 'WAREHOUSING',
-      title: 'KPI Alerts using Power BI, Big Query and Apache Airflow',
-      description:
-        'Unlock the future of data-driven decision-making with our case...',
-      image: '/placeholder-kpi.jpg',
-      categoryColor: 'bg-teal-100 text-teal-800',
-    },
-  ];
-
+const CaseStudiesGrid = ({ data }) => {
   return (
     <div className="py-16 bg-white mt-20">
       <div className="container mx-auto px-6">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-          {caseStudies.map((study, index) => (
-            <CaseStudyCard
-              key={index}
-              category={study.category}
-              title={study.title}
-              description={study.description}
-              image={study.image}
-              categoryColor={study.categoryColor}
-            />
-          ))}
+          {data &&
+            data?.map((study, index) => (
+              <CaseStudyCard
+                key={index}
+                category={study.category}
+                title={study.title}
+                description={study.description}
+                image={study.image}
+                categoryColor={study.categoryColor}
+                link={study?.slug}
+              />
+            ))}
         </div>
 
         {/* Pagination */}

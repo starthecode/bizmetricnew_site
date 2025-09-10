@@ -1,4 +1,3 @@
-import { BiPencil } from 'react-icons/bi';
 import { useCallback, useState } from 'react';
 import MediaLibraryModal from '../extras/MediaLibraryModal';
 
@@ -69,7 +68,7 @@ const ImageInput = ({ index, watchAll, setValue, type, title }) => {
     <div className="relative w-24 flex flex-col items-center gap-2">
       {imageUrl ? (
         <img
-          src={typeof imageUrl === 'string' ? imageUrl : ''}
+          src={typeof imageUrl === 'string' ? 'http://localhost:3000'+imageUrl : ''}
           alt="preview"
           className="w-18 h-18 object-cover rounded"
         />

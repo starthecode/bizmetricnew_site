@@ -4,6 +4,7 @@ import { motion, useAnimation } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { PrimaryButton } from '../../Buttons/PrimaryButton';
 import YoutubeEmbedVideo from '../../extras/embed/YoutubeEmbedVideo';
+import BackgroundSection from '../../BackgroundSection';
 
 export default function IndustrySection4({ aboutIndustryData5 }) {
   const controls = useAnimation();
@@ -18,16 +19,9 @@ export default function IndustrySection4({ aboutIndustryData5 }) {
   }, [inView, controls]);
 
   return (
-    <section
-      className="relative py-24 sm:py-24 md:py-24 lg:py-24 z-10 h-fit"
-      style={{
-        backgroundImage: `url('https://bizsiteuploads.blob.core.windows.net/uploads/1744992778190-back-image.jpg')`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-      }}
-    >
+    <BackgroundSection>
       <div className="h-full max-w-full px-0 sm:px-0 md:px-40 lg:px-40 xl:px-40">
-        <div className="grid grid-cols-2 gap-10">
+        <div className="grid grid-cols-1 xl:grid-cols-2 gap-10">
           <div className="flex justify-center items-center w-full">
             {/* Video */}
             <div className="iframe__div relative w-[300]" ref={ref}>
@@ -75,6 +69,6 @@ export default function IndustrySection4({ aboutIndustryData5 }) {
             })}
         </div> */}
       </div>
-    </section>
+    </BackgroundSection>
   );
 }

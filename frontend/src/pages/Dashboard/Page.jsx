@@ -9,7 +9,6 @@ import SeoPanel from '../../components/DashComponents/SeoPanel';
 import { usePageTitle } from '../../utils/pathName';
 import {
   defaultAboutData,
-  defaultApproachBoxesData,
   defaultIndustryData,
   defaultOtherServicesData,
   defaultSliderData,
@@ -86,6 +85,12 @@ export const Page = () => {
     testimonialsTitle: '',
     testimonialsData: [defaultTestimonialsData],
     blogTitle: '',
+    threeBoxesData: {
+      title: '',
+      subtitle: '',
+      extratext: '',
+      items: [defaultThreeBoxesData],
+    },
   });
 
   //Services Page Fields State
@@ -110,13 +115,7 @@ export const Page = () => {
       items: [defaultThreeBoxesData],
     },
 
-    whyboxFields: [
-      {
-        whyboxDesc: '',
-        whyboxImage: '',
-      },
-    ],
-    approachData: [defaultApproachBoxesData],
+    fiveinputsData: [defaultFiveBoxesData],
     otherservicesData: [defaultOtherServicesData],
   });
 
@@ -403,12 +402,8 @@ export const Page = () => {
           (item) => item.type === 'threeboxes3'
         );
 
-        const whyboxContent = contentArray.find(
-          (item) => item.type === 'whybizmetricbox'
-        );
-
-        const approachBoxContent = contentArray.find(
-          (item) => item.type === 'approach'
+        const fiveinputsContent = contentArray.find(
+          (item) => item.type === 'fiveinputs'
         );
 
         const otherServicesContent = contentArray.find(
@@ -436,6 +431,7 @@ export const Page = () => {
               extratext: threeBoxes3Content?.data?.extratext || '',
               items: threeBoxes3Content?.data?.items || [],
             },
+            fiveinputsData: fiveinputsContent?.data || [],
           }));
 
           setLifeatState((prev) => ({
@@ -522,20 +518,6 @@ export const Page = () => {
           }));
         }
 
-        if (whyboxContent?.data) {
-          setServicesFields((prev) => ({
-            ...prev,
-            whyboxFields: whyboxContent.data,
-          }));
-        }
-
-        if (approachBoxContent?.data) {
-          setServicesFields((prev) => ({
-            ...prev,
-            approachData: approachBoxContent.data,
-          }));
-        }
-
         if (otherServicesContent?.data) {
           setServicesFields((prev) => ({
             ...prev,
@@ -576,6 +558,12 @@ export const Page = () => {
               subtitle: fiveBoxesContent?.data?.subtitle || '',
               extratext: fiveBoxesContent?.data?.extratext || '',
               items: fiveBoxesContent?.data?.items || [],
+            },
+            threeBoxesData: {
+              title: threeBoxesContent?.data?.title || '',
+              subtitle: threeBoxesContent?.data?.subtitle || '',
+              extratext: threeBoxesContent?.data?.extratext || '',
+              items: threeBoxesContent?.data?.items || [],
             },
           }));
         }
@@ -645,7 +633,7 @@ export const Page = () => {
     FiveBoxes3: null,
     GalleryBoxes: null,
     ThreeBoxes3: null,
-    approach: null,
+    fiveinputs: null,
     otherservices: null,
     industrybox2: null,
     industrybox3: null,
@@ -705,8 +693,7 @@ export const Page = () => {
     const currentThreeBoxesData3 =
       sectionsRef.current.ThreeBoxes3?.getThreeBoxesData?.();
 
-    const currentApproachBoxesData =
-      sectionsRef.current.approach?.getApproachBoxesData?.();
+    const currentFiveInputsData = sectionsRef.current.fiveinputs?.getData?.();
 
     const currentOtherServicesData =
       sectionsRef.current.otherservices?.getOtherServicesData?.();
@@ -776,6 +763,15 @@ export const Page = () => {
               type: 'blog',
               data: homepageFields.blogTitle,
             },
+            {
+              type: 'threeboxes',
+              data: {
+                title: currentThreeBoxesData?.title || '',
+                subtitle: currentThreeBoxesData?.subtitle || '',
+                extratext: currentThreeBoxesData.extratext || '',
+                items: currentThreeBoxesData?.items || [],
+              },
+            },
           ];
 
         case 'services':
@@ -810,13 +806,8 @@ export const Page = () => {
             },
 
             {
-              type: 'whybizmetricbox',
-              data: servicesFields.whyboxFields,
-            },
-
-            {
-              type: 'approach',
-              data: currentApproachBoxesData,
+              type: 'fiveinputs',
+              data: currentFiveInputsData,
             },
 
             {
@@ -1010,7 +1001,7 @@ export const Page = () => {
         if (data.success) {
           toast.success('Page Created');
           setActionType('edit');
-          navigate(`/dashboard/page-new?page=${randomPageId}&action=edit`);
+          navigate(`/dashboard/new-page?page=${randomPageId}&action=edit`);
         }
       } catch (error) {
         toast.error(error.message);

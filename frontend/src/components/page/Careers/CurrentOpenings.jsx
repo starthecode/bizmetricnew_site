@@ -2,6 +2,8 @@ import { SearchBar } from '../../extras/SearchBar';
 import { Heading } from '../../Heading/Heading';
 import { RiMapPin2Fill } from 'react-icons/ri';
 import { HiClock } from 'react-icons/hi';
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const jobs = [
   {
@@ -49,6 +51,9 @@ const jobs = [
 ];
 
 export default function CurrentOpenings() {
+  const [experience, setExperience] = useState('');
+  const [skills, setSkills] = useState('');
+
   const showLocation = true;
   return (
     <section
@@ -68,12 +73,25 @@ export default function CurrentOpenings() {
           title={'Search By Specific'}
         />
       </div>
-      <SearchBar type="dark" />
+
+      {/* <SearchBar
+        type="dark"
+        dropdown1Label="Experience"
+        dropdown1Options={['Fresher', '1-2 years', '3-5 years', '5+ years']}
+        dropdown1Value={experience}
+        setDropdown1Value={setExperience}
+        dropdown2Label="Primary Skills"
+        dropdown2Options={['React', 'Node.js', 'Azure', 'Python']}
+        dropdown2Value={skills}
+        setDropdown2Value={setSkills}
+        onSearch={handleJobSearch}
+        results={filteredJobs}
+      /> */}
 
       <div className="py-10 px-4 mt-10">
         <div className="max-w-7xl mx-auto grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
           {jobs.map((job, idx) => (
-            <div
+            <Link
               key={idx}
               className="border rounded-xl shadow-sm bg-white p-6 w-full max-w-sm space-y-4"
             >
@@ -105,11 +123,14 @@ export default function CurrentOpenings() {
                   Posted by:{' '}
                   <strong className="text-gray-900">{job.posted}</strong>
                 </span>
-                <button className="bg-flamingo-100 text-orange-600 text-sm font-semibold px-4 py-2 rounded-md hover:bg-orange-200 transition">
+                <Link
+                  to={'/careers/data-engineer'}
+                  className="bg-flamingo-100 text-orange-600 text-sm font-semibold px-4 py-2 rounded-md hover:bg-orange-200 transition"
+                >
                   Apply Now →
-                </button>
+                </Link>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </div>

@@ -8,13 +8,15 @@ import { Link } from 'react-router-dom';
 import { SecondaryButton } from './Buttons/SecondaryButton';
 
 const BlogArchive = ({ data }) => {
+  const url = import.meta.env.VITE_BACKEND_PUBLIC_URL;
+
   return (
     <>
-      <section className=" pb-20">
+      <section className="pb-20">
         <div
           className="relative py-0 sm:py-0 md:pt-24 lg:pt-24 xl:pt-24 overflow-hidden z-10"
           style={{
-            backgroundImage: `url('https://bizsiteuploads.blob.core.windows.net/uploads/1744992778190-back-image.jpg')`,
+            backgroundImage: `url(${url}/uploads/1744992778190-back-image.webp)`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
           }}

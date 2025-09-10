@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import ImageInput from '../Inputs/ImageInput';
 
 const PostMetaFields = ({ setMetaData, initialMetaData }) => {
@@ -145,7 +145,7 @@ const PostMetaFields = ({ setMetaData, initialMetaData }) => {
         {featuredImage && (
           <div className="mb-2">
             <img
-              src={featuredImage}
+              src={`http://localhost:3000${featuredImage}`}
               alt="Featured"
               className="w-32 h-32 object-cover rounded-md"
             />

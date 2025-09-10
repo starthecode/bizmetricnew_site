@@ -85,6 +85,8 @@ const MediaLibraryModal = ({
     }
   };
 
+  console.log('mediaState', mediaState);
+
   return isOpen ? (
     <div className="fixed inset-0 bg-black bg-opacity-40 flex justify-center items-center z-50">
       <div className="bg-white p-4 rounded-lg w-[90%] max-w-2xl shadow-md">
@@ -139,7 +141,7 @@ const MediaLibraryModal = ({
                   className="relative group"
                 >
                   <img
-                    src={img.url}
+                    src={`http://localhost:3000${img.url}`}
                     className="w-full h-24 object-cover rounded cursor-pointer hover:opacity-80"
                     onClick={() => {
                       onSelect(img.url);

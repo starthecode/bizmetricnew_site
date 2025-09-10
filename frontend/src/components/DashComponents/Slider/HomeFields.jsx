@@ -1,9 +1,7 @@
-import React from 'react';
 import TestimonialsComp from './TestimonialsComp';
 import BlogComp from './BlogComp';
 import WhychooseComp from './WhychooseComp';
 import IndustryComp from './IndustryComp';
-import ServicesComp from './ServicesComp';
 import AboutComp from './AboutComp';
 import PartnerComp from './PartnerComp';
 import SliderForm from './SliderComp';
@@ -83,6 +81,16 @@ export default function HomeFields({
           testimonialsData={homepageFields?.testimonialsData}
           testimonialsTitle={homepageFields?.testimonialsTitle}
           setTestimonialsTitle={setHomepageFields?.setTestimonialsTitle}
+        />
+      </div>
+      <div
+        style={{
+          display: activeTab === 'tab-homeBox9' ? 'block' : 'none',
+        }}
+      >
+        <ThreeBoxes
+          ref={(el) => (sectionsRef.current.ThreeBoxes = el)}
+          threeBoxesData={homepageFields?.threeBoxesData}
         />
       </div>
     </div>

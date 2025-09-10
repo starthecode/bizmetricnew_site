@@ -27,17 +27,16 @@ const IndustrySection1 = ({ aboutIndustryData1, aboutIndustryData2 }) => {
         <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-4 xl:grid-cols-4 gap-12 items-start pt-10">
           <div className="col-span-2">
             <Heading
+              classes={'items-center xl:items-start text-center xl:text-start'}
               type="dark"
               smallTitle={'Energy Industry Solutions'}
               title={'Turn Data Chaos into Competitive Advantage'}
+              subText={aboutIndustryData1?.textInput1}
             />
-          </div>
-          <div className="col-span-2">
-            <p>{aboutIndustryData1?.textInput1}</p>
           </div>
         </div>
         <div className="relative overflow-hidden h-full pb-32">
-          <div className="absolute inset-0">
+          <div className="absolute inset-0 hidden md:block lg:block xl:block">
             <Line5 />
           </div>
           <div className="flex justify-center items-center w-full mt-10">
@@ -55,7 +54,7 @@ const IndustrySection1 = ({ aboutIndustryData1, aboutIndustryData2 }) => {
           </div>
           <div className="w-full h-full flex flex-col justify-center items-center mt-20">
             <Heading
-              classes={'items-center'}
+              classes={'items-center text-center'}
               type="dark"
               smallTitle={
                 'The Crisis: Data Overload, Rising Costs, & Missed Opportunities'
@@ -67,7 +66,7 @@ const IndustrySection1 = ({ aboutIndustryData1, aboutIndustryData2 }) => {
       </div>
 
       <div className="w-full flex items-center justify-center -mt-32 mb-10 relative z-10">
-        <div className="flex gap-10 mt-5 w-full max-w-[70em]">
+        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-10 mt-5 w-full">
           {aboutIndustryData2 &&
             aboutIndustryData2?.map((item, index) => (
               <div

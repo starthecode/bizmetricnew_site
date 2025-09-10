@@ -3,7 +3,7 @@ import { OpenAI } from 'openai'; // or use local LLM
 
 const openai = new OpenAI({
   baseURL: 'https://openrouter.ai/api/v1',
-  apiKey: process.env.OPENAI_API_KEY,
+  apiKey: process.env.OPENAI_API_KEY || '',
 });
 
 export default async function generateSEO({ title, content }) {

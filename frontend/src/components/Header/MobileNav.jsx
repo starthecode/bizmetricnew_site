@@ -16,13 +16,13 @@ export const MobileNav = ({ menuList }) => {
             <li className="js-nav-dropdown group relative" key={index}>
               <button
                 onClick={() => dropdownHandler(item.key)}
-                className="hover:text-accent focus:text-accent dark:hover:text-accent dark:focus:text-accent flex items-center justify-between py-3.5 dark:text-white lg:px-5 w-full"
+                className="hover:text-accent focus:text-accent dark:hover:text-accent dark:focus:text-accent flex items-center justify-between py-3 lg:px-5 w-full"
               >
                 <span className="text-base sm:text-sm md:text-md 2xl:text-lg dark:text-accent">
                   {item.title}
                 </span>
                 {item?.children.length > 0 && (
-                  <BiChevronDownCircle className="lg:hidden h-4 w-4 dark:fill-white" />
+                  <BiChevronDownCircle className="lg:hidden h-4 w-4 fill-flamingo-500" />
                 )}
               </button>
               {item?.children.length > 0 && (

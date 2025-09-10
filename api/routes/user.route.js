@@ -1,5 +1,10 @@
 import express from 'express';
-import { signout, test, updateUser } from '../controllers/user.controller.js';
+import {
+  getUser,
+  getUsers,
+  signout,
+  updateUser,
+} from '../controllers/user.controller.js';
 import { verifyToken } from '../utils/verifyUser.js';
 
 import { verifyRoute } from '../middleware/authMiddleware.js';
@@ -8,7 +13,11 @@ import { authorizeRoles } from '../middleware/roleMiddleware.js';
 
 const router = express.Router();
 
-router.get('/test', test);
+// router.get('/test', test);
+
+router.get('/getUsers', verifyToken, getUsers);
+
+router.get('/getUser/:slug', verifyToken, getUser);
 
 router.put('/update/:userId', verifyToken, updateUser);
 
@@ -48,4 +57,5 @@ router.get(
     res.json({ message: 'Welcome User' });
   }
 );
+
 export default router;

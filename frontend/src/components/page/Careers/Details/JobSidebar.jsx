@@ -1,6 +1,14 @@
 import React from 'react';
+import { formatDate } from '../../../../utils/utils';
 
-export const JobSidebar = () => {
+export const JobSidebar = ({
+  employeeType,
+  date,
+  jobType,
+  location,
+  experience,
+  skills,
+}) => {
   return (
     <section>
       <div className="shadow dark:shadow-gray-700 rounded-md !text-white bg-flamingo-500 dark:bg-junglegreen-700 sticky top-20">
@@ -28,9 +36,9 @@ export const JobSidebar = () => {
               </svg>
 
               <div className="ms-4">
-                <p className="font-medium text-woodsmoke-700">Employee Type:</p>
+                <p className="font-bold text-woodsmoke-700">Employee Type:</p>
                 <span className="text-woodsmoke-400 font-medium text-sm">
-                  Full Time
+                  {employeeType}
                 </span>
               </div>
             </li>
@@ -53,9 +61,9 @@ export const JobSidebar = () => {
               </svg>
 
               <div className="ms-4">
-                <p className="font-medium text-woodsmoke-700">Location:</p>
+                <p className="font-bold text-woodsmoke-700">Location:</p>
                 <span className="text-woodsmoke-400 font-medium text-sm">
-                  Beijing, China
+                  {location.map(String).join(', ')}
                 </span>
               </div>
             </li>
@@ -79,9 +87,9 @@ export const JobSidebar = () => {
               </svg>
 
               <div className="ms-4">
-                <p className="font-medium text-woodsmoke-700">Job Type:</p>
+                <p className="font-bold text-woodsmoke-700">Job Type:</p>
                 <span className="text-woodsmoke-400 font-medium text-sm">
-                  Back-end Developer
+                  {jobType}
                 </span>
               </div>
             </li>
@@ -104,9 +112,9 @@ export const JobSidebar = () => {
               </svg>
 
               <div className="ms-4">
-                <p className="font-medium text-woodsmoke-700">Experience:</p>
+                <p className="font-bold text-woodsmoke-700">Experience:</p>
                 <span className="text-woodsmoke-400 font-medium text-sm">
-                  2+ years
+                  {experience}
                 </span>
               </div>
             </li>
@@ -129,9 +137,9 @@ export const JobSidebar = () => {
               </svg>
 
               <div className="ms-4">
-                <p className="font-medium text-woodsmoke-700">Date posted:</p>
+                <p className="font-bold text-woodsmoke-700">Date posted:</p>
                 <span className="text-woodsmoke-400 font-medium text-sm">
-                  28th Feb, 2023
+                  {formatDate(date)}
                 </span>
               </div>
             </li>
@@ -144,7 +152,7 @@ export const JobSidebar = () => {
         </div>
         <div className="px-4 py-4 relative group inner-content border border-onyx-800/20 shadow-lg bg-white dark:bg-gradient-to-t from-onyx-950 to-woodsmoke-950">
           <div>
-            <p className="text-sm mb-4 text-woodsmoke-700">
+            <p className="text-md mb-4 text-woodsmoke-700">
               Bizmetric, a Microsoft Solution Partner & Oracle Gold Partner & ,
               was founded in 2011 in Houston, Texas, US and in 2015 in Pune,
               India. It is a fast-paced organization that is marking an
@@ -154,7 +162,7 @@ export const JobSidebar = () => {
               technologically driven company helping customers in the field of
               Data Science, Advanced Analytics, Cloud and Edge Computing.
             </p>
-            <p className="text-sm text-woodsmoke-700">
+            <p className="text-md text-woodsmoke-700">
               We are Microsoft, Oracle, Snowflake, Confluent, Informatica
               partners as well. Our rich & varied experience in Business
               Intelligence coupled with a market-disrupting solution like Big

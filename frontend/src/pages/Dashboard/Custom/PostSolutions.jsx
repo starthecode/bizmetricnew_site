@@ -331,7 +331,7 @@ export const PostSolutions = () => {
     };
 
     if (postid || actionType === 'edit') {
-      console.log('payload edit', payload);
+      // console.log('payload edit', payload);
 
       try {
         const res = await fetch(`/api/solutions/update/${postid}`, {
@@ -379,7 +379,7 @@ export const PostSolutions = () => {
         if (data.success) {
           toast.success('Page Created');
           setActionType('edit');
-          navigate(`/dashboard/solution-new?page=${randomPageId}&action=edit`);
+          navigate(`/dashboard/new-solution?page=${randomPageId}&action=edit`);
         }
       } catch (error) {
         toast.error(error.message);

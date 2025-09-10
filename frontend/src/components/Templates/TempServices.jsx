@@ -5,6 +5,7 @@ import ApproachBox from '../ApproachBox';
 import SubServicesComp from '../DashComponents/SubServicesComp';
 import NewsCards from '../Cards/NewsCards';
 import IndustryAccordions from '../DashComponents/IndustryAccordions';
+import BackgroundSection from '../BackgroundSection';
 
 export default function TempServices({ data }) {
   return (
@@ -19,19 +20,24 @@ export default function TempServices({ data }) {
         }
       />
       <IndustryAccordions />
-      <WhyBizmetricBox whyboxData={data?.content?.[2]?.data} />
-      <SubServicesComp otherservicesData={data?.content?.[4]?.data} />
-      <ApproachBox whyboxData={data?.content?.[3]?.data} />
-      <section
-        className="relative pt-28 xl:pb-40 z-10 bg-black"
-        style={{
-          backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://bizsiteuploads.blob.core.windows.net/uploads/1744992778190-back-image.jpg')`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-        }}
-      >
+      <WhyBizmetricBox
+        whyboxData={
+          data?.content?.find((c) => c.type === 'fiveinputs')?.data[0] || ''
+        }
+      />
+      <SubServicesComp
+        otherservicesData={
+          data?.content?.find((c) => c.type === 'otherservices')?.data || ''
+        }
+      />
+      <ApproachBox
+        approachData={
+          data?.content?.find((c) => c.type === 'threeboxes3')?.data || ''
+        }
+      />
+      <BackgroundSection>
         <NewsCards />
-      </section>
+      </BackgroundSection>
     </>
   );
 }

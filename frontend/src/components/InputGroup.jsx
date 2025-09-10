@@ -11,7 +11,7 @@ const InputGroup = ({ type, placeholder, name, onChange, value, disabled }) => {
         id={name}
         value={value}
         onChange={onChange}
-        className="w-full disabled:text-slate-400 rounded-md border border-stroke bg-transparent px-5 py-3 text-base text-body-color outline-none focus:border-primary focus-visible:shadow-none dark:border-dark-3 dark:text-white"
+        className="w-full disabled:text-slate-400 rounded-md border border-stroke bg-transparent px-5 py-2 text-base text-body-color outline-none focus:border-primary focus-visible:shadow-none dark:border-dark-3 dark:text-white"
       />
     </div>
   );

@@ -13,6 +13,7 @@ export const BoxesItems = ({ data }) => {
   return (
     <div className="container my-20">
       <Heading
+        classes={'items-center text-center xl:text-start xl:items-start'}
         type={'dark'}
         smallTitle={data?.title}
         title={data?.subtitle}

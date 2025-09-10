@@ -29,7 +29,7 @@ const MenuItem = ({ item, scroll, children, ...props }) => {
         to={item?.url}
         className={`${scroll ? ' text-white' : 'text-white'} ${
           item?.url === '#' && 'pointer-events-none'
-        } relative sm:text-sm md:text-sm 2xl:text-sm font-medium hover:text-flamingo-400`}
+        } relative text-xs lg:text-md xl:text-sm 2xl:text-sm font-medium hover:text-flamingo-400`}
       >
         {item?.menuAcfFields?.menuLabel && (
           <label className="absolute -top-5 -right-6 bg-junglegreen-100/80 text-junglegreen-800 flex items-center text-[0.6rem] font-medium mr-2 px-2 py-0 rounded-full ml-4">

@@ -7,6 +7,7 @@ import IndustrySection3 from '../page/IndustriesPage/IndustrySection3';
 import IndustrySection4 from '../page/IndustriesPage/IndustrySection4';
 import NewsCards from '../Cards/NewsCards';
 import IndustrySection5 from '../page/IndustriesPage/IndustrySection5';
+import BackgroundSection from '../BackgroundSection';
 
 export default function TempIndustries({ data, title }) {
   let industryBox1Data = null;
@@ -85,17 +86,9 @@ export default function TempIndustries({ data, title }) {
       <IndustrySection4 aboutIndustryData5={industryBox5Data} />
       <IndustrySection5 aboutIndustryData6={industryBox6Data} />
 
-      <section
-        className="relative px-0 sm:px-0 md:px-10 lg:px-40 xl:px-40 pt-28 xl:pb-40 z-10 bg-black"
-        style={{
-          backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://bizsiteuploads.blob.core.windows.net/uploads/1744992778190-back-image.jpg')`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-        }}
-      >
-        {' '}
+      <BackgroundSection>
         <NewsCards />
-      </section>
+      </BackgroundSection>
     </section>
   );
 }

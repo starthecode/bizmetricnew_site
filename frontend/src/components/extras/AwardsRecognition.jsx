@@ -10,6 +10,8 @@ import GlowLight from './GlowLight';
 import { Heading } from '../Heading/Heading';
 
 export default function AwardsRecognition({ data }) {
+  const url = import.meta.env.VITE_BACKEND_PUBLIC_URL;
+
   return (
     <section className="py-28 container">
       {' '}
@@ -56,9 +58,7 @@ export default function AwardsRecognition({ data }) {
                   {/* Profile Image */}
                   <div className="relative flex flex-col justify-center items-center overflow-hidden">
                     <img
-                      src={
-                        'https://bizsiteuploads.blob.core.windows.net/uploads/1750576848525-awards-badge3345.webp'
-                      }
+                      src={`${url}/uploads/1750576848525-awards-badge3345.webp`}
                       alt={slide.threeboxesinput2}
                       className={`w-36 h-32 ${
                         isActive ? 'border-white' : 'border-white/20'

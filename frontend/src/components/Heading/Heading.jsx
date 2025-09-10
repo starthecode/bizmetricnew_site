@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { motion, useAnimation } from 'framer-motion';
 import { useEffect, useRef } from 'react';
 import { useInView } from 'framer-motion';
@@ -48,7 +46,7 @@ export const Heading = ({ type, smallTitle, title, subText, classes }) => {
         ref={ref}
         initial={{ opacity: 0 }}
         animate={controls}
-        className={`block pb-3 sm:text-center md:text-center xl:text-left text-2xl sm:text-xl md:text-3xl xl:text-3xl text-[#F4FFFA00] bg-clip-text bg-gradient-to-b ${
+        className={`block pb-3 text-center sm:text-center md:text-center xl:text-left text-2xl sm:text-xl md:text-3xl xl:text-3xl text-[#F4FFFA00] bg-clip-text bg-gradient-to-b ${
           type === 'dark'
             ? 'from-black to-junglegreen-500'
             : 'from-white to-white/35'

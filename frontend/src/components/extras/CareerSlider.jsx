@@ -103,7 +103,7 @@ export default function CareerSlider() {
                         className="w-4 h-4 text-gray-500"
                         fill="none"
                         stroke="currentColor"
-                        stroke-width="2"
+                        strokeWidth="2"
                         viewBox="0 0 24 24"
                       >
                         <path
@@ -119,7 +119,7 @@ export default function CareerSlider() {
                         className="w-4 h-4 text-gray-500"
                         fill="none"
                         stroke="currentColor"
-                        stroke-width="2"
+                        strokeWidth="2"
                         viewBox="0 0 24 24"
                       >
                         <path

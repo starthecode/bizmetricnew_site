@@ -1,15 +1,13 @@
 import ThreeBoxes from '../ServicesPage/ThreeBoxes';
-import OverviewBoxes from '../ServicesPage/OverviewBoxes';
-import WhyBizmetricComp from '../ServicesPage/WhyBizmetricComp';
 import ApproachComp from '../ServicesPage/ApproachComp';
 import OtherServicesComp from '../ServicesPage/OtherServicesComp';
 import FiveBoxes from '../ServicesPage/FiveBoxes';
+import FiveInputs from '../ServicesPage/FiveInputs';
 
 export default function ServicesFields({
   activeTab,
   sectionsRef,
   servicesFields,
-  setServicesFields,
 }) {
   return (
     <div className="p-4">
@@ -29,32 +27,22 @@ export default function ServicesFields({
           ref={(el) => (sectionsRef.current.FiveBoxes = el)}
           fiveBoxesData={servicesFields?.fiveBoxesData}
         />
-
-        <ThreeBoxes
-          ref={(el) => (sectionsRef.current.ThreeBoxes3 = el)}
-          threeBoxesData={servicesFields?.threeBoxesData3}
-        />
       </div>
 
       <div
         style={{ display: activeTab === 'tab-servicesBox3' ? 'block' : 'none' }}
       >
-        <WhyBizmetricComp
-          whyboxFields={servicesFields.whyboxFields}
-          setWhyBoxFields={(updatedValue) =>
-            setServicesFields((prev) => ({
-              ...prev,
-              whyboxFields: updatedValue,
-            }))
-          }
+        <FiveInputs
+          ref={(el) => (sectionsRef.current.fiveinputs = el)}
+          fiveinputsData={servicesFields.fiveinputsData || []} // Add fallback
         />
       </div>
       <div
         style={{ display: activeTab === 'tab-servicesBox4' ? 'block' : 'none' }}
       >
-        <ApproachComp
-          ref={(el) => (sectionsRef.current.approach = el)}
-          approachData={servicesFields?.approachData}
+        <ThreeBoxes
+          ref={(el) => (sectionsRef.current.ThreeBoxes3 = el)}
+          threeBoxesData={servicesFields?.threeBoxesData3}
         />
       </div>
 

@@ -2,9 +2,13 @@ import React from 'react';
 import { BiDownArrow, BiLogOut } from 'react-icons/bi';
 import { PrimaryButton } from '../Buttons/PrimaryButton';
 
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { handleSignout } from '../../utils/api';
+import { signoutSuccess } from '../../redux/slices/userSlice';
 
 export const UserProfile = () => {
+  const dispatch = useDispatch();
+
   const { currentUser } = useSelector((state) => state.user);
 
   const [active, setActive] = React.useState(false);
@@ -37,7 +41,7 @@ export const UserProfile = () => {
           >
             {!currentUser?.profilePicture ? (
               <span className="bg-white p-1 w-8 h-auto rounded-full">
-                {emailName}
+                {emailName.substring(0, 4) + '...'}
               </span>
             ) : (
               <img
@@ -50,7 +54,7 @@ export const UserProfile = () => {
             )}
 
             <span className="font-medium w-full text-junglegreen-500">
-              {currentUser?.userName}
+              {currentUser?.userName.substring(0, 5) + "..." }
             </span>
             <BiDownArrow className="fill-junglegreen-800" />
           </button>
@@ -67,7 +71,7 @@ export const UserProfile = () => {
               <li className="border-b">
                 <p className="p-2 flex flex-col">
                   <span className="text-sm">Signed in as</span>
-                  <span className="text-sm">{currentUser?.email}</span>
+                  <span className="text-sm">{currentUser?.email.substring(0, 25) + "..." }</span>
                 </p>
               </li>
               {/* <li className="mt-2">
@@ -90,8 +94,8 @@ export const UserProfile = () => {
 
               <li>
                 <button
+                  onClick={() => handleSignout(dispatch, signoutSuccess)}
                   className="flex w-full gap-1 items-center py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 dark:text-neutral-400 dark:hover:bg-neutral-700 dark:hover:text-neutral-300 dark:focus:bg-neutral-700"
-                  onClick={() => null}
                 >
                   <BiLogOut /> Logout
                 </button>

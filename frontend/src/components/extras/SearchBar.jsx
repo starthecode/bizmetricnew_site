@@ -1,23 +1,45 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { PrimaryButton } from '../Buttons/PrimaryButton';
+import { useState, useEffect } from 'react';
 
-export const SearchBar = ({ item, type }) => {
-  const searchRef = useRef(null);
-  const [query, setQuery] = useState('');
-  const [searchActive, setSearchActive] = useState(false);
-  const [results, setResults] = useState([]);
-  const [loading, setLoading] = useState(false);
+export const SearchBar = ({
+  type,
+  onSearch,
+  results = [],
+  dropdown1Label = 'Industry',
+  dropdown1Options = [],
+  dropdown1Value,
+  setDropdown1Value,
+  dropdown2Label = 'Technology',
+  dropdown2Options = [],
+  dropdown2Value,
+  setDropdown2Value,
+}) => {
+  const [keyword, setKeyword] = useState('');
 
-  const params = useMemo(
-    () => (query ? { slug: [query] } : { slug: [] }),
-    [query]
-  );
+  useEffect(() => {
+    if (onSearch) {
+      onSearch({
+        keyword,
+        dropdown1: dropdown1Value,
+        dropdown2: dropdown2Value,
+      });
+    }
+  }, [keyword, dropdown1Value, dropdown2Value]);
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    onSearch({
+      keyword,
+      dropdown1: dropdown1Value,
+      dropdown2: dropdown2Value,
+    });
+  };
 
   const isDark = type === 'dark';
 
   const baseStyles = {
-    container: `mx-auto bg-woodsmoke-500/30 w-screen h-12 max-w-screen-md relative z-10 flex justify-between rounded-xl px-2 py-1 sm:flex-row sm:items-center sm:p-0
+    container: `mx-auto w-screen h-12 max-w-screen-md relative z-10 flex justify-between rounded-xl px-2 py-1 sm:flex-row sm:items-center sm:p-0
       ${
         isDark
           ? 'bg-zinc-900 ring-1 ring-white/20'
@@ -29,107 +51,62 @@ export const SearchBar = ({ item, type }) => {
       ${isDark ? 'text-white' : 'text-woodsmoke-700 font-semibold'}`,
   };
 
-  // useEffect(() => {
-  //   // Fetch default search results
-  //   setLoading(true);
-
-  //   const searchAllCasestudies = async () => {
-  //     await fetchGraphQL(searchCaseStudies, params).then((res) => {
-  //       if (res) {
-  //         setResults(res?.data?.caseStudies?.nodes);
-  //       }
-  //     });
-  //     setLoading(false); // Make sure to stop loading after fetching
-  //   };
-
-  //   searchAllCasestudies();
-  // }, [params]);
-
-  // const onChange = (event) => {
-  //   setQuery(event.target.value);
-  // };
-
   return (
     <>
-      <form
-        ref={searchRef}
-        onSubmit={(e) => {
-          e.preventDefault();
-          // handle search
-        }}
-        className={baseStyles.container}
-      >
+      <form onSubmit={handleSearch} className={baseStyles.container}>
         <div className="flex gap-2 w-full">
-          <select className={baseStyles.select} name="industry" id="industry">
-            <option value="industry-1">Industry</option>
-            <option value="industry-2">Industry Two</option>
-            <option value="industry-3">Industry Three</option>
+          <select
+            className={baseStyles.select}
+            value={dropdown1Value}
+            onChange={(e) => setDropdown1Value(e.target.value)}
+          >
+            <option value="">{dropdown1Label}</option>
+            {dropdown1Options.map((opt) => (
+              <option key={opt} value={opt}>
+                {opt}
+              </option>
+            ))}
           </select>
 
-          <select className={baseStyles.select} name="tech" id="tech">
-            <option value="tech-1">Technology</option>
-            <option value="tech-2">Tech Two</option>
-            <option value="tech-3">Tech Three</option>
+          <select
+            className={baseStyles.select}
+            value={dropdown2Value}
+            onChange={(e) => setDropdown2Value(e.target.value)}
+          >
+            <option value="">{dropdown2Label}</option>
+            {dropdown2Options.map((opt) => (
+              <option key={opt} value={opt}>
+                {opt}
+              </option>
+            ))}
           </select>
 
           <input
-            id="search"
-            type="search"
-            autoComplete="off"
-            placeholder="Type Something..."
             className={baseStyles.input}
+            type="search"
+            value={keyword}
+            onChange={(e) => setKeyword(e.target.value)}
+            placeholder="Type something..."
           />
         </div>
-
-        <PrimaryButton type="submit" title={'Search'} />
+        <PrimaryButton type="submit" title="Search" />
       </form>
 
-      {loading ? (
-        <div className="w-full text-center mt-4">
-          <span>Loading...</span>
-        </div>
-      ) : (
-        results.length > 0 && (
-          <div className="mt-10 grid lg:grid-cols-3 gap-6 lg:py-16 py-14 aos-init">
-            {results.map((item) => (
-              <div key={item.title}>
-                <img
-                  width={300}
-                  height={300}
-                  alt="blog post img"
-                  src={
-                    item?.featuredImage?.mediaItemUrl
-                      ? item?.featuredImage?.mediaItemUrl
-                      : '/images/dummy-img-bizmetric.webp'
-                  }
-                  className="w-auto h-auto rounded-md mb-5"
-                />
-
-                <h1 className="text-md my-3 transition-all hover:text-primary">
-                  {item?.title?.length > 60
-                    ? `${item.title
-                        .replace(/<[^>]*>?/gm, '')
-                        .substring(0, 30)}...`
-                    : item.title}
-                </h1>
-                <p className="text-sm/relaxed tracking-wider text-gray-500">
-                  {item?.excerpt?.length > 100
-                    ? `${item.excerpt
-                        .replace(/<[^>]*>?/gm, '')
-                        .substring(0, 80)}...`
-                    : item.excerpt}
-                </p>
-                <Link
-                  to={`/case_studies/${item?.slug}`}
-                  className="text-primary"
-                >
-                  read more
-                </Link>
-              </div>
-            ))}
+      <div className="grid lg:grid-cols-3 gap-6 aos-init">
+        {results.length === 0 ? (
+          <div className="col-span-3 text-center text-gray-500 mt-4">
+            No results found.
           </div>
-        )
-      )}
+        ) : (
+          results.map((item) => (
+            <div key={item.id} className="your-card-style">
+              <img src={item.image} alt={item.title} />
+              <h1>{item.title}</h1>
+              <Link to={`/case_studies/${item.slug}`}>Read more</Link>
+            </div>
+          ))
+        )}
+      </div>
     </>
   );
 };

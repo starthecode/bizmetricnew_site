@@ -51,6 +51,8 @@ const contentData = {
 };
 
 export default function IndustryAccordions() {
+  const url = import.meta.env.VITE_BACKEND_PUBLIC_URL;
+
   const [activeTab, setActiveTab] = React.useState('manufacturing');
 
   const [loading, setLoading] = React.useState(true);
@@ -88,12 +90,17 @@ export default function IndustryAccordions() {
 
   return (
     <div className="h-full max-w-full px-10 sm:px-0 md:px-10 lg:px-20 xl:px-40 mt-20 pb-20 bg-white">
-      <div className="flex w-full mb-10 pt-10">
-        <Heading type="dark" smallTitle={data?.title} title={data?.subtitle} />
+      <div className="flex w-full mb-10">
+        <Heading
+          classes={'items-center'}
+          type="dark"
+          smallTitle={data?.title}
+          title={data?.subtitle}
+        />
       </div>
       <GlowLight classes={'-left-20 bg-flamingo-600/40'} />
-      <div className="h-full max-w-full relative z-10">
-        <div className="flex gap-10 sm:gap-5 md:gap-5 lg:gap-8 overflow-x-auto pb-4">
+      <div className="h-full w-full relative z-10">
+        <div className="grid grid-cols-2 md:grid-cols-4 xl:grid-cols-6 gap-10 pb-4">
           {data?.items &&
             data?.items?.map((tab, index) => {
               const IconComponent = iconMap[tab.threeboxesinput1];
@@ -111,9 +118,9 @@ export default function IndustryAccordions() {
         </div>
 
         {/* Content */}
-        <div className="grid grid-cols-4 gap-6 h-fit">
-          <div className="col-span-3 h-fit">
-            <div className="grid grid-cols-2 gap-6 mt-6">
+        <div className="grid grid-cols-1 xl:grid-cols-4 gap-6 h-fit">
+          <div className="col-span-1 xl:col-span-3 h-fit">
+            <div className="grid grid-cols-1 xl:grid-cols-2 gap-6 mt-6">
               {(contentData[activeTab] || []).map((item, index) => (
                 <div
                   key={index}
@@ -122,7 +129,7 @@ export default function IndustryAccordions() {
                   <div className="absolute">
                     <SecondaryButton title={''} link={''} />
                   </div>
-                  <div className="grid grid-cols-2 py-10">
+                  <div className="grid grid-cols-1 xl:grid-cols-2 py-10">
                     <div>
                       <h3 className="text-md font-normal mb-2">{item.title}</h3>
                       <p className="text-sm text-gray-600">{item.desc}</p>
@@ -146,7 +153,7 @@ export default function IndustryAccordions() {
               <PrimaryButton title={'Learn More'} link={'/'} />
             </span>
             <img
-              src="https://bizsiteuploads.blob.core.windows.net/uploads/1745383381182-learnmoreimg.webp"
+              src={`${url}/uploads/1745383381182-learnmoreimg.webp`}
               alt="learn more"
               className="w-full h-[270px] object-cover rounded-xl"
             />

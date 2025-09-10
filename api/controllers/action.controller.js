@@ -1,15 +1,15 @@
-import Page from '../models/page.model.js';
+import Casestudies from '../models/casestudies.model.js';
 import Post from '../models/post.model.js';
 import Solutions from '../models/solutions.model.js';
 
 export const deleteById = async (req, res, next) => {
   try {
     const { postId: pageId, type } = req.params;
-
     // Mapping types to corresponding models
     const modelMap = {
       solutions: Solutions,
       post: Post,
+      casestudy: Casestudies,
     };
 
     const Model = modelMap[type?.toLowerCase()];

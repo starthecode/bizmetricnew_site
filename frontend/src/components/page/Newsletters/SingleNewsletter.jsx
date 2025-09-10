@@ -9,7 +9,7 @@ import PagePostHero from '../../HeroSection/PagePostHero';
 import EmbedBox from './EmbedBox';
 import PagePostSidebar from '../../extras/PagePostSidebar';
 
-export default function SolutionsPage() {
+export default function SingleNewsletter() {
   const { slug } = useParams();
 
   const [loading, setLoading] = useState(true);
@@ -98,7 +98,7 @@ export default function SolutionsPage() {
   if (notFound) return <NotFound />;
 
   return (
-    <section className='pb-20'>
+    <section className="pb-20">
       <PagePostHero alignCenter="true" {...pageHeaderData} />
       <div className="bg-gray-100 min-h-screen p-4">
         <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-8">

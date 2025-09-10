@@ -55,32 +55,49 @@ export const createCasestudies = async (req, res, next) => {
 
 export const getCasestudies = async (req, res, next) => {
   try {
-    const startIndex = parseInt(req.query.startIndex) || 0;
-    const limit = parseInt(req.query.limit) || 10;
-    const sortDirection = req.query.order === 'asc' ? 1 : -1;
+    const {
+      startIndex = 0,
+      limit = 10,
+      order = 'desc',
+      search = '',
+      industry,
+      technology,
+    } = req.query;
 
-    const CasestudiesData = await Casestudies.find({
-      ...(req.query.pageId && { _id: req.query.pageId }),
-    })
+    const sortDirection = order === 'asc' ? 1 : -1;
+
+    const searchQuery = {};
+
+    if (search) {
+      searchQuery.title = { $regex: search, $options: 'i' };
+    }
+
+    if (industry) {
+      searchQuery['metaFields.tags'] = industry;
+    }
+
+    if (technology) {
+      searchQuery['metaFields.categories'] = technology;
+    }
+
+    const casestudiesData = await Casestudies.find(searchQuery)
       .sort({ updatedAt: sortDirection })
-      .skip(startIndex)
-      .limit(limit)
-      .select('title createdAt metaFields postType pageId slug'); // ✅ Include all needed fields
+      .skip(parseInt(startIndex))
+      .limit(parseInt(limit))
+      .select('title createdAt metaFields postType pageId slug');
 
-    const filteredPosts =
-      CasestudiesData &&
-      CasestudiesData.map((post) => ({
-        id: post?._id.toString(),
-        title: post.title,
-        postType: post?.postType,
-        pageId: post?.pageId,
-        slug: post.slug,
-        image: post.metaFields?.featuredImage || '',
-        category: post.metaFields?.categories || [],
-        date: post.createdAt,
-      }));
+    const filteredPosts = casestudiesData.map((post) => ({
+      id: post?._id.toString(),
+      title: post.title,
+      postType: post?.postType,
+      pageId: post?.pageId,
+      slug: post.slug,
+      image: post.metaFields?.featuredImage || '',
+      category: post.metaFields?.categories || [],
+      date: post.createdAt,
+    }));
 
-    const totalPostCount = await Casestudies.countDocuments();
+    const totalPostCount = await Casestudies.countDocuments(searchQuery);
 
     res.status(200).json({
       posts: filteredPosts,

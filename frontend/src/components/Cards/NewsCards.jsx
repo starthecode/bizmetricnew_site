@@ -127,26 +127,26 @@ function AnimatedBlogCards({ blog, index }) {
 
 export default function NewsCards() {
   return (
-    <div className="container">
+    <>
       <GlowLight classes={'top-1/1 right-0 bg-junglegreen-500/40'} />
-      <div className="flex text-center items-center justify-center">
+      <div className="flex flex-col md:flex-row lg:flex-row xl:flex-row text-center items-center justify-center mb-10">
         <Heading
           type=""
           smallTitle={'Our Blogs'}
           title={'Tech Talks & News'}
-          classes={'items-center'}
+          classes={'items-center md:items-start lg:items-start xl:items-start'}
         />
-      </div>
-      <div className="">
-        <div className="flex justify-end sm:justify-center md:justify-center lg:justify-center xl:justify-end mb-6">
+        <div className="flex justify-center sm:justify-center md:justify-center lg:justify-end xl:justify-end mb-6">
           <PrimaryButton title={'View All'} link={'/'} />
         </div>
-        <div className="grid-cols-1 md:grid-cols-3 flex gap-20 items-center justify-center">
+      </div>
+      <div className="">
+        <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 xl:flex gap-20 items-center justify-center justify-items-center">
           {blogItems.map((blog, index) => (
             <AnimatedBlogCards key={index} blog={blog} index={index} />
           ))}
         </div>
       </div>
-    </div>
+    </>
   );
 }

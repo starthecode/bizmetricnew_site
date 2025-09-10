@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 import toast from 'react-hot-toast';
@@ -20,8 +20,6 @@ export default function TableComp({ data = [], type }) {
     currentPage * ITEMS_PER_PAGE
   );
 
-  console.log('paginatedPages', paginatedPages);
-
   const toggleSelect = (id) => {
     setSelectedItems((prev) =>
       prev.includes(id) ? prev.filter((i) => i !== id) : [...prev, id]
@@ -42,8 +40,8 @@ export default function TableComp({ data = [], type }) {
       <div className="flex items-center justify-between mb-4">
         <div className="space-x-4">
           <Link
-            to={`/dashboard/${type + '-new'} `}
-            className="bg-blue-600 text-white px-3 py-1 rounded text-sm"
+            to={`/dashboard/new-${type} `}
+            className="bg-flamingo-500 text-white px-3 py-1 rounded text-sm capitalize"
           >
             Add New {type}
           </Link>
@@ -91,10 +89,14 @@ export default function TableComp({ data = [], type }) {
                       item.postType === 'post'
                         ? 'post-new?post'
                         : item.postType === 'solutions'
-                        ? 'solution-new?page'
+                        ? 'new-solution?page'
                         : item.postType === 'newsletters'
                         ? 'new-newsletter?page'
-                        : 'page-new?page'
+                        : item.postType === 'casestudies'
+                        ? 'new-casestudy?page'
+                        : item.postType === 'careers'
+                        ? 'new-career?page'
+                        : 'new-page?page'
                     }=${item.pageId}&action=edit`}
                     className={`hover:underline ${item}`}
                   >
@@ -108,7 +110,11 @@ export default function TableComp({ data = [], type }) {
                     Trash
                   </button>
                   <Link
-                    to={item.title === 'home' ? '/' : `/${item.slug}`}
+                    to={
+                      item.title === 'home'
+                        ? '/'
+                        : `/${item.postType}/${item.slug}`
+                    }
                     className="hover:underline"
                   >
                     View

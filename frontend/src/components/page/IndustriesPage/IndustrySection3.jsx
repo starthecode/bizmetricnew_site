@@ -8,6 +8,7 @@ export default function IndustrySection3({ aboutIndustryData4 }) {
       <div className="max-w-7xl mx-auto">
         <div>
           <Heading
+            classes={'items-center xl:items-start text-center xl:text-start'}
             type="dark"
             smallTitle={'Energy Industry Solutions'}
             title={'Turn Data Chaos into Competitive Advantage'}
@@ -17,8 +18,8 @@ export default function IndustrySection3({ aboutIndustryData4 }) {
         <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-12 items-start pt-10">
           {aboutIndustryData4 &&
             aboutIndustryData4?.map((item, index) => (
-              <div key={index} className="flex w-full">
-                <div className="md:w-[50%] h-[300px] relative py-10 px-8 text-white overflow-hidden rounded-md">
+              <div key={index} className="block md:block xl:flex w-full">
+                <div className="w-full xl:w-[50%] h-[300px] relative py-10 px-8 text-white overflow-hidden rounded-md">
                   <div className="absolute inset-0">
                     <img
                       src={item?.textInput1}
@@ -32,7 +33,7 @@ export default function IndustrySection3({ aboutIndustryData4 }) {
                     dangerouslySetInnerHTML={{ __html: item?.textInput2 }}
                   />
                 </div>
-                <div className="md:w-1/2 py-4 px-8">
+                <div className="w-full xl:w-1/2 py-4 px-8">
                   <div
                     className="industry__box_list"
                     dangerouslySetInnerHTML={{ __html: item?.textInput3 }}

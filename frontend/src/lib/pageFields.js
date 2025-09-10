@@ -39,12 +39,6 @@ export const defaultGalleryBoxesData = {
   ],
 };
 
-export const defaultApproachBoxesData = {
-  approachInput1: '',
-  approachInput2: '',
-  approachInput3: '',
-};
-
 export const defaultOtherServicesData = {
   otherservicesInput1: '',
   otherservicesInput2: '',
@@ -173,34 +167,6 @@ export const getContentByTemplate = (
   }
 };
 
-// export const tabsHomes = [
-//   { id: 'tab-sliderForm', label: 'Slider Section' },
-//   { id: 'tab-partnerComp', label: 'Partner Section' },
-//   { id: 'tab-aboutComp', label: 'About Section' },
-//   { id: 'tab-servicesComp', label: 'Services Section' },
-//   { id: 'tab-industryComp', label: 'Industry Section' },
-//   { id: 'tab-whychooseComp', label: 'WhyChoose Section' },
-//   { id: 'tab-blogComp', label: 'Blog Section' },
-//   { id: 'tab-testimonialsComp', label: 'Testimonials Section' },
-// ];
-
-// export const tabsServices = [
-//   { id: 'tab-serviceBox1', label: 'Service Box 1' },
-//   { id: 'tab-serviceBox2', label: 'Service Box 2' },
-//   { id: 'tab-serviceBox3', label: 'Service Box 3' },
-//   { id: 'tab-serviceBox4', label: 'Service Box 4' },
-//   { id: 'tab-serviceBox5', label: 'Service Box 5' },
-// ];
-
-// export const tabsIndustry = [
-//   { id: 'tab-industryBox1', label: 'Industry Box 1' },
-//   { id: 'tab-industryBox2', label: 'Industry Box 2' },
-//   { id: 'tab-industryBox3', label: 'Industry Box 3' },
-//   { id: 'tab-industryBox4', label: 'Industry Box 4' },
-//   { id: 'tab-industryBox5', label: 'Industry Box 5' },
-//   { id: 'tab-industryBox6', label: 'Industry Box 6' },
-// ];
-
 export const tabsSolutions = [
   { id: 'tab-solutionBox1', label: 'Solution Section One' },
   { id: 'tab-solutionBox2', label: 'Solution Section TWo' },
@@ -216,7 +182,7 @@ const generateTabs = (prefix, labelBase, count) =>
   }));
 
 export const tabsByTemplate = {
-  homepage: generateTabs('homeBox', 'Home Box', 8),
+  homepage: generateTabs('homeBox', 'Home Box', 9),
   services: generateTabs('servicesBox', 'Services Box', 5),
   industries: generateTabs('industryBox', 'Industry Box', 6),
   aboutus: generateTabs('aboutusBox', 'Aboutus Box', 8),

@@ -12,7 +12,6 @@ import { PrimaryButton } from '../Buttons/PrimaryButton';
 // import PopupContext from '../Extras/Popups/PopupContext';
 
 const Header = ({ menus }) => {
-
   const menuList = flatListToHierarchical(menus);
   const [active, setActive] = useState(false);
 
@@ -65,16 +64,16 @@ const Header = ({ menus }) => {
     <>
       <header>
         <div
-          className={`flex mt-3 relative justify-center items-center w-[600px] ${
+          className={`flex mt-0 md:mt-2 xl:mt-3 relative justify-center items-center ${
             width < 1024 && active
               ? 'mobile-nav--active inset-0 z-30 fixed'
-              : 'large-menu relative sm:fixed md:fixed lg:fixed xl:fixed'
+              : 'large-menu top-0 md:top-2 xl:top-12 relative sm:fixed md:fixed lg:fixed xl:fixed'
           } `}
         >
           <div
-            className={`mobile-nav-btns lg:items-center flex lg:justify-start md:justify-between sm:justify-between ${headerClasses} px-4 lg:px-6 lg:xl:px-0`}
+            className={`mobile-nav-btns xl:fixed lg:items-center flex lg:justify-start md:justify-between sm:justify-between ${headerClasses} px-4 lg:px-6 lg:xl:px-0`}
           >
-            <div className="flex justify-between lg:w-full items-center mx-10">
+            <div className="flex justify-between lg:w-full items-center ml-10 md:ml-0 xl:mx-10">
               <Logo />
 
               <Navbar
@@ -93,7 +92,7 @@ const Header = ({ menus }) => {
             >
               <Search active={active} width={width} />
             </div>
-            <div className="ml-4 flex items-center gap-5 mx-10">
+            <div className="ml-4 flex items-center gap-2 xl:gap-5 mx-10">
               <div className="flex relative items-center">
                 {/* Menu Open-Close Button */}
                 <div className="ml-auto flex">
@@ -134,14 +133,19 @@ const Header = ({ menus }) => {
                 </div>
               </div>
               {/* <UserProfile /> */}
-              <PrimaryButton title="Contact Us" link="/contact-us" />;
+              <PrimaryButton
+                type="link"
+                title="Contact Us"
+                link="/contact-us"
+              />
+
             </div>
           </div>
         </div>
         <div
           className={`${
             width < 1024 && active ? '' : 'hidden'
-          } h-fit fixed z-20 inset-0 px-10 py-10 bg-[#f7f9fc] dark:bg-gradient-to-t from-onyx-950 to-woodsmoke-950`}
+          } h-fit absolute z-20 inset-0 px-10 py-10 bg-[#f7f9fc] dark:bg-gradient-to-t from-onyx-950 to-woodsmoke-950`}
         >
           {/* Mobile Menu */}
           <MobileNav menuList={menuList} />

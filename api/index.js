@@ -22,6 +22,8 @@ import casestudiesRoutes from './routes/casestudies.route.js';
 
 import newslettersRoutes from './routes/newsletters.route.js';
 
+import careersRoutes from './routes/careers.route.js';
+
 import settingsRoutes from './routes/settings.route.js';
 
 import customizerRoutes from './routes/customizer.route.js';
@@ -30,7 +32,11 @@ import actionRoutes from './routes/action.route.js';
 
 import contactRoutes from './routes/contact.route.js';
 
+import otpRoutes from './routes/otp.route.js';
+
 import blogRoutes from './routes/blog.route.js';
+
+import categoryRoutes from './routes/category.route.js';
 
 import pollRoutes from './routes/poll.route.js';
 
@@ -72,6 +78,8 @@ app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
 
+app.use('/uploads', express.static(path.join(__dirname, 'public', 'uploads')));
+
 // Routes
 app.use('/api/user', userRoutes);
 
@@ -88,6 +96,8 @@ app.use('/api/casestudies', casestudiesRoutes);
 
 app.use('/api/newsletters', newslettersRoutes);
 
+app.use('/api/careers', careersRoutes);
+
 app.use('/api/settings', settingsRoutes);
 
 app.use('/api/customizer', customizerRoutes);
@@ -97,7 +107,11 @@ app.use('/api/action', actionRoutes);
 app.use('/api/poll', pollRoutes);
 
 app.use('/api/contact', contactRoutes);
+app.use('/api/otp', otpRoutes);
+
 app.use('/api/blog/', blogRoutes);
+
+app.use('/api/category/', categoryRoutes);
 
 app.use('/api/menu', menuRoutes);
 
@@ -111,8 +125,6 @@ app.get('*', (req, res) => {
 
 // Serve static files
 // app.use('/assets', express.static(path.join(__dirname, 'assets')));
-
-app.use('/assets', express.static(path.join(__dirname, 'api', 'assets')));
 
 app.use((err, req, res, next) => {
   const statusCode = err.statusCode || 500;

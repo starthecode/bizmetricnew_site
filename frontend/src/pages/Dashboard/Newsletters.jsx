@@ -38,7 +38,7 @@ export const Newsletters = () => {
       {loading ? (
         <div className="text-center py-10 text-gray-500">Loading...</div>
       ) : (
-        <TableComp type="solution" data={newsletters} />
+        <TableComp type="newsletter" data={newsletters} />
       )}
     </div>
   );

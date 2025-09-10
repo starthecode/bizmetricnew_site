@@ -15,20 +15,22 @@ const iconMap = {
   GrDocumentTest,
 };
 
-export default function ApproachBox({ whyboxData = [] }) {
+export default function ApproachBox({ approachData = [] }) {
+  console.log('approachData', approachData);
+
   return (
     <div className="relative z-[999] overflow-hidden rounded-[30px] bg-gradient-to-t from-white to-transparent px-4 pb-20 sm:px-20 lg:px-[110px] mt-20">
       <div className="w-full flex justify-center text-center items-center mb-10">
         <Heading
           type="dark"
-          smallTitle="Approach"
+          smallTitle={approachData?.title}
           title="Our Approach"
           classes="items-center"
         />
       </div>
 
       <div className="relative w-full h-full mt-20">
-        <div className="absolute flex justify-center items-center top-0 left-0 rounded-full before:bg-junglegreen-600/20 after:bg-flamingo-600/30 circle__pulse">
+        <div className="absolute flex justify-center items-center top-0 left-0 rounded-full before:bg-junglegreen-500/20 after:bg-flamingo-600/30 circle__pulse">
           <svg
             className="w-16 h-16"
             viewBox="0 0 32 32"
@@ -40,13 +42,13 @@ export default function ApproachBox({ whyboxData = [] }) {
                 <stop stopColor="#7587E4" stopOpacity="0" offset="100%" />
               </linearGradient>
               <linearGradient x1="18.591%" y1="0%" x2="100%" y2="100%" id="b">
-                <stop stopColor="#818CF8" offset="0%" />
+                <stop stopColor="#04c89e" offset="0%" />
                 <stop stopColor="#C7D2FE" offset="100%" />
               </linearGradient>
             </defs>
             <g fill="none" fillRule="evenodd">
-              <path fill="#3730A3" d="M16 18.5V32l15.999-9.25V9.25z" />
-              <path fill="#4F46E5" d="m0 23 16 9V18.501L0 9.251z" />
+              <path fill="#04c89e" d="M16 18.5V32l15.999-9.25V9.25z" />
+              <path fill="#04c89e" d="m0 23 16 9V18.501L0 9.251z" />
               <path
                 fillOpacity=".64"
                 fill="url(#a)"
@@ -58,50 +60,50 @@ export default function ApproachBox({ whyboxData = [] }) {
         </div>
 
         <div className="block mt-28">
-          <div className="relative overflow-hidden w-[1px] h-[90px] m-auto">
+          <div className="relative overflow-hidden w-[2px] h-[90px] m-auto">
             <div
               className="absolute w-full h-[40%] bg-junglegreen-500 top-[30%]"
               style={{ boxShadow: '0px 0px 30px 20px grey' }}
             ></div>
           </div>
 
-          <div className="border border-woodsmoke-600/50 my-4" />
-
-          <div className="grid grid-cols-5 gap-4">
-            {whyboxData.map((item, index) => {
-              const IconComponent =
-                iconMap[item?.approachInput2] || LuSearchCode;
-              return (
-                <div
-                  key={index}
-                  className="flex flex-col items-center justify-center"
-                >
-                  <div className="relative overflow-hidden w-[1px] h-[60px] m-auto">
-                    <div
-                      className="absolute w-full h-[40%] bg-gray-500 top-[30%]"
-                      style={{ boxShadow: '0px 0px 30px 20px grey' }}
-                    ></div>
-                  </div>
-
+          <div className="border border-junglegreen-500" />
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-5 gap-0 xl:gap-4">
+            {approachData &&
+              approachData?.items?.map((item, index) => {
+                const IconComponent =
+                  iconMap[item?.threeboxesinput1] || LuSearchCode;
+                return (
                   <div
-                    className="z-10 w-[180px] h-[200px] rounded-xl p-3 flex flex-col justify-center items-center
-                    bg-[#08112e] border border-white/20 ring-1 ring-white/10 shadow-xl backdrop-blur-md"
+                    key={index}
+                    className="flex flex-col items-center justify-center"
                   >
-                    <div className="flex flex-col justify-center items-center p-5">
-                      <span className="flex justify-center items-center border border-gray-700/30 bg-flamingo-500 dark:bg-gradient-to-b dark:from-[#0f172a] dark:to-[#1e293b] w-12 h-12 rounded-full mb-3">
-                        <IconComponent size={24} color="white" />
-                      </span>
-                      <h1 className="text-center text-sm uppercase text-junglegreen-600 font-semibold">
-                        {item?.approachInput1}
-                      </h1>
-                      <p className="text-xs text-center mt-2 text-slate-200/90">
-                        {item?.approachInput3}
-                      </p>
+                    <div className="relative overflow-hidden w-[2px] h-[60px] m-auto">
+                      <div
+                        className="absolute w-full h-[50%] bg-junglegreen-500 top-[30%]"
+                        style={{ boxShadow: '0px 0px 30px 20px grey' }}
+                      ></div>
+                    </div>
+
+                    <div
+                      className="z-10 w-[200px] h-[250px] rounded-xl py-2 px-8 flex flex-col justify-center items-center
+                    bg-[#08112e] border border-white/20 ring-1 ring-white/10 shadow-xl backdrop-blur-md"
+                    >
+                      <div className="flex flex-col justify-center items-center">
+                        <span className="flex justify-center items-center border border-gray-700/30 bg-flamingo-200 dark:bg-gradient-to-b dark:from-[#0f172a] dark:to-[#1e293b] w-12 h-12 rounded-full mb-3">
+                          <IconComponent size={24} color="#f2692a" />
+                        </span>
+                        <h1 className="text-center text-sm uppercase text-junglegreen-500 font-semibold">
+                          {item?.threeboxesinput2}
+                        </h1>
+                        <p className="text-xs text-center mt-2 text-slate-200/90">
+                          {item?.threeboxesinput3}
+                        </p>
+                      </div>
                     </div>
                   </div>
-                </div>
-              );
-            })}
+                );
+              })}
           </div>
         </div>
       </div>

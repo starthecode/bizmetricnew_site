@@ -17,7 +17,7 @@ export default function SeoPanel({ seoFields, setSeoFields, pageName }) {
 
   return (
     <div className="w-full px-4 border border-gray-300 rounded-md mt-5">
-      <h2 className="text-xl font-bold mb-10 mt-4">{pageName} Seo</h2>
+      <h2 className="capitalize text-xl font-bold mb-10 mt-4">{pageName} Seo</h2>
       {fieldList.map(({ key, label }) => (
         <InputLabel
           key={key}
