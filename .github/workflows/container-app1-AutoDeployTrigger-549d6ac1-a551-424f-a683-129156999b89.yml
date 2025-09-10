@@ -4,19 +4,18 @@ name: Trigger auto deployment for container-app1
 on:
   # Automatically trigger it when detected changes in repo
   push:
-    branches: 
-      [ main ]
+    branches: [main]
     paths:
-    - '**'
-    - '.github/workflows/container-app1-AutoDeployTrigger-549d6ac1-a551-424f-a683-129156999b89.yml'
+      - '**'
+      - '.github/workflows/container-app1-AutoDeployTrigger-549d6ac1-a551-424f-a683-129156999b89.yml'
 
-  # Allow manual trigger 
-  workflow_dispatch:      
+  # Allow manual trigger
+  workflow_dispatch:
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-    permissions: 
+    permissions:
       id-token: write #This is required for requesting the OIDC JWT Token
       contents: read #Required when GH token is used to authenticate with private repo
 
@@ -37,13 +36,11 @@ jobs:
           appSourcePath: ${{ github.workspace }}
           _dockerfilePathKey_: _dockerfilePath_
           _targetLabelKey_: _targetLabel_
-          registryUrl: 
+          registryUrl: bizregistry123.azurecr.io
           registryUsername: ${{ secrets.CONTAINERAPP1_REGISTRY_USERNAME }}
           registryPassword: ${{ secrets.CONTAINERAPP1_REGISTRY_PASSWORD }}
           containerAppName: container-app1
           resourceGroup: rc1
-          imageToBuild: default/[parameters('containerAppName')]:${{ github.sha }}
+          imageToBuild: bizregistry123.azurecr.io/container-app1:${{ github.sha }}
           _buildArgumentsKey_: |
             _buildArgumentsValues_
-
-
