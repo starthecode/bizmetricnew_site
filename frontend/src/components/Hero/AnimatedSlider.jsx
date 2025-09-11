@@ -14,6 +14,7 @@ import { IoMdArrowRoundBack, IoMdArrowRoundForward } from 'react-icons/io';
 import BackgroundSection from '../BackgroundSection';
 
 export default function AnimatedSlider({ data, mrqData }) {
+  const url = import.meta.env.VITE_BACKEND_PUBLIC_URL;
   return (
     <BackgroundSection>
       <div className="h-full container mt-6 px-0">
@@ -41,7 +42,9 @@ export default function AnimatedSlider({ data, mrqData }) {
                 } p-10 border-t border-t-junglegreen-500`}
                 key={index}
                 style={{
-                  backgroundImage: `linear-gradient(to right, rgba(0,0,0,0.5), rgba(0,0,0,0.5), rgba(0,0,0,0.0)), url(${item?.sliderImage})`,
+                  backgroundImage: `linear-gradient(to right, rgba(0,0,0,0.5), rgba(0,0,0,0.5), rgba(0,0,0,0.0)), url(${
+                    url + item?.sliderImage
+                  })`,
                   backgroundSize: 'cover',
                   backgroundPosition: 'center',
                   backgroundRepeat: 'no-repeat',
