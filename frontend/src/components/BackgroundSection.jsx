@@ -3,7 +3,6 @@ export default function BackgroundSection({
   className = '',
   style = {},
 }) {
-  const url = import.meta.env.VITE_BACKEND_PUBLIC_URL;
   return (
     <section
       className={`relative py-20 sm:py-24 md:py-24 lg:py-20 z-10 ${className}`}
