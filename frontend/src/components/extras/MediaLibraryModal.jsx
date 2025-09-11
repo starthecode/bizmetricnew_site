@@ -141,7 +141,7 @@ const MediaLibraryModal = ({
                   className="relative group"
                 >
                   <img
-                    src={`http://localhost:3000${img.url}`}
+                    src={`${img.url}`}
                     className="w-full h-24 object-cover rounded cursor-pointer hover:opacity-80"
                     onClick={() => {
                       onSelect(img.url);
