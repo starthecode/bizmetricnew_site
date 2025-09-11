@@ -32,7 +32,7 @@ const Footer = () => {
             </div>
 
             <div className="mt-10">
-              <img src="https://bizsiteuploads.blob.core.windows.net/uploads/1750942105289-Databricks%20APJ%20Innovation%20Partner%20of%20the%20Year%20Awards_LinkedIn%20Post.webp" />
+              <img src="/uploads/1750942105289-Databricks.webp" />
             </div>
           </div>
 
@@ -55,7 +55,10 @@ const Footer = () => {
                       key={item}
                       className="cursor-pointer flex items-center gap-1 text-sm xl:text-md text-woodsmoke-200 hover:text-flamingo-500 py-1"
                     >
-                      <IoIosArrowForward size={15} className='fill-junglegreen-500' />
+                      <IoIosArrowForward
+                        size={15}
+                        className="fill-junglegreen-500"
+                      />
                       {item}
                     </li>
                   ))}
